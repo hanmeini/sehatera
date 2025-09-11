@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sehatera - Nutrisi Tepat</title>
+    <link rel="shortcut icon" href="/assets/images/logo-sehatera.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .slide-item {
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800 overflow-x-hidden">
+            <div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
+            
+            <div class="hidden lg:block relative h-screen overflow-hidden" id="image-slider">
+                <div class="slide-item absolute inset-0 opacity-100">
+                    <img src="/assets/images/loginbg1.png" alt="Healthy Salad" class="h-full w-full object-cover"/>
+                </div>
+                <div class="slide-item absolute inset-0 opacity-0">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop" alt="Fresh Ingredients" class="h-full w-full object-cover"/>
+                </div>
+                <div class="slide-item absolute inset-0 opacity-0">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1887&auto=format&fit=crop" alt="Delicious Food" class="h-full w-full object-cover"/>
+                </div>
+                
+                <div class="absolute inset-0 bg-[#09332C]/80 flex flex-col justify-end p-12 text-white">
+                    <a href="" class="border-2 border-white p-4 items-center justify-center rounded-full absolute flex top-4 left-4">
+                        <img src="/assets/images/arrow-left.svg" alt="">
+                    </a>
+                    <div class="mb-10">
+                        <h1 class="text-4xl font-bold transition-opacity duration-500">Analisis Gizi Instan</h1>
+                        <p class="text-xl mt-2 transition-opacity duration-500">Ketahui nutrisi makananmu dengan satu foto.</p>
+                    </div>
+                    <div class="flex gap-2 " id="slider-nav">
+                        <button class="slide-dot h-1 w-full rounded-full bg-white transition-colors"></button>
+                        <button class="slide-dot h-1 w-full rounded-full bg-white/50 transition-colors"></button>
+                        <button class="slide-dot h-1 w-full rounded-full bg-white/50 transition-colors"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative h-screen flex flex-col justify-center items-center p-4 bg-cover bg-center bg-[url('/assets/images/loginbg1.png')] lg:bg-none lg:bg-white"
+                >
+                <img src="/assets/images/layerlogin.svg" class="absolute top-0 right-0 z-50" alt="">
+                <img src="/assets/images/logo.svg" class="w-10 h-10 absolute top-10 left-10 md:block hidden" alt="">
+                <div class="absolute inset-0 bg-[#09332CD6]/80 lg:hidden"></div>
+
+
+                <div class="relative z-10 w-full max-w-md bg-white md:bg-transparent p-8 rounded-2xl shadow-xl lg:shadow-none lg:rounded-none lg:flex lg:flex-col lg:justify-center">
+                    <div class="w-full flex flex-col">
+                        <img src="/assets/images/logo.svg" class="w-10 h-10 self-center mb-5 md:hidden block" alt="">
+                        <h2 id="page-title" class="text-3xl font-bold text-gray-800 text-center">Gabung Bersama Kami</h2>
+                        <p class="text-gray-500 mt-1 mb-6 text-center">Mulai perjalanan sehat Anda sekarang.</p>
+                        
+                        
+                        <button class="w-full flex items-center justify-center gap-2 border rounded-full px-6 py-3 hover:bg-gray-50 transition disabled:opacity-50">
+                            <img src="https://img.icons8.com/color/48/000000/google-logo.png" class="w-5 h-5" alt="Google Logo"/>
+                            <span class="text-sm font-semibold text-gray-700">Masuk dengan Google</span>
+                        </button>
+
+                        <div class="my-6 w-full flex items-center justify-between">
+                            <hr class="w-2/5 border-gray-300" />
+                            <span class="text-xs text-gray-400">ATAU</span>
+                            <hr class="w-2/5 border-gray-300" />
+                        </div>
+                        
+                        <form class="w-full flex flex-col gap-4">
+                            <div>
+                                <label class="text-sm font-semibold text-gray-700 mb-1 block text-left">Email</label>
+                                <input type="email" placeholder="contoh@gmail.com" class="w-full rounded-full bg-gray-100 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#09332C]" required />
+                            </div>
+                            <div>
+                                <label class="text-sm font-semibold text-gray-700 mb-1 block text-left">Kata Sandi</label>
+                                <input type="password" placeholder="Masukkan kata sandi" class="w-full rounded-full bg-gray-100 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#09332C]" required />
+                            </div>
+                            <button id="submit-button" type="submit" class="bg-[#09332C] text-white rounded-full py-3 mt-2 font-semibold hover:bg-teal-900 transition disabled:bg-[#09332C]">
+                                Daftar
+                            </button>
+                        </form>
+
+                        <p id="auth-text-info" class="mt-6 text-sm text-gray-500 text-center">
+                            Sudah punya akun?
+                            <a href="#" id="auth-link" class="text-[#09332C] font-medium hover:underline">
+                                Masuk
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
