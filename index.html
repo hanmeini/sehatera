@@ -43,7 +43,7 @@
                                     </button>
                                     <div id="layanan-menu" class="hidden absolute items-center justify-center left-0 top-20 gap-8 px-20 py-6 w-screen bg-white flex flex-row mt-2 rounded-md shadow-lg z-50">
                                         <div class="py-1 flex flex-col gap-8">
-                                            <a href="#" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
+                                            <a href="/analisa-makanan.html" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
                                                 <span class="flex items-center gap-2">
                                                     <div class="flex-shrink-0 w-12 h-12 bg-[#2A4B4B] rounded-full flex items-center justify-center shadow-md">
                                                         <img src="/assets/images/star.svg" class="w-6 h-6 text-white" alt="">
@@ -271,7 +271,27 @@
                 </div>
             </div>
         </div>
-        <img src="/assets/images/avocado.svg" class="object-cover absolute -bottom-52 left-[30%]" alt="">
+        <div class="absolute relative -bottom-52 left-0 h-[200px] flex-col flex md:mt-0  gap-5 md:gap-14 group">
+              <video
+                class="object-contain w-full h-64 rounded-2xl
+                           transition-transform duration-500 ease-in-out
+                           transform group-hover:scale-110 group-hover:-rotate-3"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src="/assets/images/Cartoon_Avocado_Animation_Ready.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              
+              <div class="absolute top-0 right-[40%] bg-gray-100 px-6 py-2 rounded-full
+                           opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100
+                           transition-all duration-300 ease-in-out
+                           transform translate-x-1/4 group-hover:-rotate-3 -translate-y-1/2">
+                <span class="text-sm font-medium">Selamat pagi 👋</span>
+              </div>
+            </div>
     </section>
 
     <!-- Testimoni -->

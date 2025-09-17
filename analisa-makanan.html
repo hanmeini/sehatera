@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Gizi Makanan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #FCFCFC;
+        }
+        .brand-dark-green { color: #09312A; }
+        .bg-brand-dark-green { background-color: #09312A; }
+        .border-brand-dark-green { border-color: #09312A; }
+        .bg-brand-light-green { background-color: #F0FAF8; }
+        .text-brand-orange { color: #F59E0B; }
+        .text-brand-red { color: #EF4444; }
+
+        .footer-bg{
+            background-image: 
+                linear-gradient(rgba(39, 61, 51, 0.9), rgba(39, 61, 51, 0.9)), 
+                url('/assets/images/footer.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+        <header class="sticky top-0 z-50 bg-[#FFFFFf] bg-opacity-80 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-2 border-b-2 border-[#09332C]">
+            <nav class="flex justify-between items-center">
+                <div class="hidden md:flex flex-1 justify-start">
+                    <ul class="flex items-center gap-6 font-semibold text-gray-600">
+                        <li><a href="#" class="text-[#09332C] font-bold hover:text-green-900">Beranda</a></li>                    
+                        <li class="border-l border-gray-300 h-6"></li>
+                        
+                        <!-- Dropdown Menu Layanan -->
+                        <li class="">
+                            <button id="layanan-btn" class="flex items-center gap-1 font-bold text-[#09332C] hover:text-green-900 focus:outline-none">
+                                <span>Layanan</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="layanan-menu" class="hidden absolute items-center justify-center left-0 top-20 gap-8 px-20 py-6 w-screen bg-white flex flex-row mt-2 rounded-md shadow-lg z-50">
+                                <div class="py-1 flex flex-col gap-8">
+                                    <a href="/analisa-makanan.html" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
+                                        <span class="flex items-center gap-2">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-[#2A4B4B] rounded-full flex items-center justify-center shadow-md">
+                                                <img src="/assets/images/star.svg" class="w-6 h-6 text-white" alt="">
+                                            </div>
+                                            Analisis Gizi AI
+                                        </span>
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7l5 5-5 5"/></svg>
+                                    </a>
+                                    <a href="#" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
+                                        <span class="flex items-center gap-2">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-[#2A4B4B] rounded-full flex items-center justify-center shadow-md">
+                                                <img src="/assets/images/apple.svg" class="w-6 h-6 text-white" alt="">
+                                            </div>
+                                                Rekomendasi Menu
+                                            </span>
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7l5 5-5 5"/></svg>
+                                    </a>
+                                </div>
+                                <div class="py-1 flex flex-col gap-8">
+                                        <a href="#" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
+                                            <span class="flex items-center gap-2">
+                                                <div class="flex-shrink-0 w-12 h-12 bg-[#2A4B4B] rounded-full flex items-center justify-center shadow-md">
+                                                    <img src="/assets/images/hamil.svg" class="w-6 h-6 text-white" alt="">
+                                                </div>
+                                                Jurnal Kehamilan
+                                            </span>
+                                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7l5 5-5 5"/></svg>
+                                        </a>
+                                        <a href="#" class="gap-44 flex items-center border-2 rounded-md justify-between w-auto px-10 py-6 text-sm text-gray-700 hover:bg-gray-100">
+                                            <span class="flex items-center gap-2">
+                                                <div class="flex-shrink-0 w-12 h-12 bg-[#2A4B4B] rounded-full flex items-center justify-center shadow-md">
+                                                    <img src="/assets/images/reward.svg" class="w-6 h-6 text-white" alt="">
+                                                </div>
+                                                Misi Reward
+                                            </span>
+                                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7l5 5-5 5"/></svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="border-l border-gray-300 h-6"></li>
+                            <li><a href="#" class="text-[#09332C] font-bold hover:text-green-900">Kontak Kami</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                            <svg class="w-18 h-18" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.941579 62.067C1.32151 62.3809 1.71797 62.6287 2.13094 62.8104C2.56043 62.9921 3.07252 63.0829 3.6672 63.0829C4.67486 63.0829 5.17868 62.7608 5.17868 62.1166C5.17868 61.8357 5.02175 61.6127 4.70789 61.4475C4.41055 61.2824 4.03888 61.1254 3.59287 60.9768C3.16337 60.8281 2.72562 60.6464 2.27961 60.4316C1.8336 60.2169 1.45367 59.9361 1.13981 59.5892C0.842465 59.2258 0.693795 58.7384 0.693795 58.1272C0.693795 57.45 0.858984 56.9048 1.18936 56.4919C1.53626 56.0624 1.98227 55.7485 2.5274 55.5503C3.08904 55.3521 3.68372 55.253 4.31144 55.253C5.08783 55.253 5.73207 55.3768 6.24415 55.6246C6.67365 55.8063 6.95447 56.0293 7.08662 56.2936C7.21877 56.5414 7.21877 56.8966 7.08662 57.3591L7.01228 57.6317C6.96273 57.7638 6.89665 57.8299 6.81406 57.8299C6.7645 57.8299 6.7232 57.8216 6.69016 57.8051C6.65713 57.7721 6.60757 57.7473 6.54149 57.7308C5.7651 57.3509 5.00523 57.1609 4.26188 57.1609C3.9315 57.1609 3.65068 57.227 3.41942 57.3591C3.18815 57.4913 3.07252 57.6978 3.07252 57.9786C3.07252 58.2594 3.22119 58.4907 3.51853 58.6724C3.83239 58.8376 4.20407 58.9945 4.63356 59.1432C5.07957 59.2918 5.52558 59.4735 5.97159 59.6883C6.4176 59.903 6.78928 60.1839 7.08662 60.5307C7.40048 60.8776 7.55741 61.3402 7.55741 61.9183C7.55741 62.8434 7.22703 63.595 6.56627 64.1732C5.90551 64.7348 5.03001 65.0156 3.93976 65.0156C3.24597 65.0156 2.63477 64.9 2.10616 64.6687C1.59408 64.421 1.18936 64.0988 0.892022 63.7024C0.594681 63.3059 0.446011 62.893 0.446011 62.4635C0.446011 62.1331 0.545124 61.9679 0.743352 61.9679C0.809427 61.9679 0.875503 62.0009 0.941579 62.067ZM11.23 60.952C11.3126 61.6127 11.6017 62.1166 12.0973 62.4635C12.5928 62.8104 13.2206 62.9838 13.9804 62.9838C14.6081 62.9838 15.1285 62.9177 15.5415 62.7856C15.9544 62.6534 16.3674 62.4717 16.7804 62.2405C16.9291 62.1413 17.0612 62.0918 17.1768 62.0918C17.3585 62.0918 17.4494 62.2074 17.4494 62.4387C17.4494 62.7856 17.3173 63.1573 17.0529 63.5537C16.8052 63.9502 16.4087 64.2971 15.8636 64.5944C15.3185 64.8752 14.5916 65.0156 13.6831 65.0156C12.7911 65.0156 11.9734 64.8339 11.23 64.4705C10.5032 64.0906 9.92503 63.5372 9.49554 62.8104C9.06605 62.067 8.8513 61.1585 8.8513 60.0847C8.8513 59.1432 9.03301 58.309 9.39643 57.5821C9.77636 56.8553 10.305 56.2854 10.9822 55.8724C11.676 55.4594 12.4855 55.253 13.4105 55.253C14.4017 55.253 15.2028 55.4594 15.814 55.8724C16.4417 56.2689 16.896 56.7892 17.1768 57.4335C17.4742 58.0777 17.6229 58.7632 17.6229 59.4901C17.6229 59.7378 17.6146 59.9608 17.5981 60.1591C17.5981 60.3408 17.5898 60.4977 17.5733 60.6299C17.5568 60.8446 17.4164 60.952 17.1521 60.952H11.23ZM11.23 59.2423H15.2441C15.2772 58.9615 15.2441 58.6724 15.145 58.375C15.0624 58.0612 14.8807 57.7969 14.5999 57.5821C14.3191 57.3674 13.9226 57.26 13.4105 57.26C12.7828 57.26 12.279 57.4417 11.899 57.8051C11.5356 58.152 11.3126 58.6311 11.23 59.2423ZM21.884 56.4423C22.1648 56.0624 22.5282 55.765 22.9742 55.5503C23.4202 55.319 23.9488 55.2034 24.56 55.2034C25.6833 55.2034 26.5836 55.5586 27.2609 56.2689C27.9547 56.9627 28.3016 57.9868 28.3016 59.3414V64.4953C28.3016 64.677 28.2107 64.7679 28.029 64.7679H26.1954C26.0137 64.7679 25.9228 64.677 25.9228 64.4953V59.6387C25.9228 58.8293 25.7329 58.2594 25.3529 57.929C24.973 57.5821 24.5022 57.4087 23.9406 57.4087C23.3459 57.4087 22.8503 57.5821 22.4539 57.929C22.0739 58.2759 21.884 58.8706 21.884 59.7131V64.4953C21.884 64.677 21.8014 64.7679 21.6362 64.7679H19.8274C19.6456 64.7679 19.5548 64.677 19.5548 64.4953V51.2884C19.5548 51.0902 19.6456 50.9911 19.8274 50.9911H19.9512C20.579 50.9911 21.058 51.1563 21.3884 51.4866C21.7188 51.8005 21.884 52.3291 21.884 53.0725V56.4423ZM37.3788 63.6033C37.0484 64.0493 36.6272 64.3962 36.1151 64.644C35.603 64.8752 35.0579 64.9909 34.4797 64.9909C33.5546 64.9909 32.77 64.7679 32.1258 64.3218C31.498 63.8758 31.019 63.2811 30.6886 62.5378C30.3747 61.7944 30.2178 60.9768 30.2178 60.0847C30.2178 59.1597 30.3913 58.3337 30.7382 57.6069C31.0851 56.8635 31.5806 56.2771 32.2249 55.8476C32.8856 55.4181 33.6538 55.2034 34.5293 55.2034C35.2561 55.2034 35.8673 55.3355 36.3629 55.5999C36.8749 55.8642 37.2797 56.178 37.577 56.5414C37.7091 56.1615 37.9239 55.8889 38.2212 55.7237C38.5351 55.542 38.9068 55.4512 39.3363 55.4512H39.4602C39.6419 55.4512 39.7327 55.5503 39.7327 55.7485V64.4953C39.7327 64.677 39.6419 64.7679 39.4602 64.7679H37.6266C37.4614 64.7679 37.3788 64.677 37.3788 64.4953V63.6033ZM35 62.7608C35.3139 62.7608 35.6525 62.6947 36.016 62.5626C36.3959 62.4139 36.718 62.1496 36.9823 61.7697C37.2466 61.3897 37.3788 60.8281 37.3788 60.0847C37.3788 59.3414 37.2466 58.788 36.9823 58.4246C36.718 58.0447 36.4042 57.7969 36.0407 57.6812C35.6773 57.5491 35.3387 57.483 35.0248 57.483C34.6944 57.483 34.3393 57.5573 33.9594 57.706C33.5959 57.8547 33.2821 58.119 33.0178 58.4989C32.77 58.8789 32.6461 59.4075 32.6461 60.0847C32.6461 60.7951 32.7783 61.3484 33.0426 61.7449C33.3234 62.1248 33.6455 62.3891 34.0089 62.5378C34.3723 62.6865 34.7027 62.7608 35 62.7608ZM43.1246 57.6069H41.4893C41.3076 57.6069 41.2167 57.5078 41.2167 57.3096V55.7485C41.2167 55.5503 41.3076 55.4512 41.4893 55.4512H43.1246V52.453C43.1246 52.2713 43.2072 52.1804 43.3724 52.1804H43.4963C44.1406 52.1804 44.6279 52.3456 44.9582 52.676C45.3051 53.0064 45.4786 53.535 45.4786 54.2618V55.4512H47.4856C47.6343 55.4512 47.7086 55.5503 47.7086 55.7485V57.3096C47.7086 57.5078 47.6343 57.6069 47.4856 57.6069H45.4786V64.4953C45.4786 64.677 45.396 64.7679 45.2308 64.7679H43.3724C43.2072 64.7679 43.1246 64.677 43.1246 64.4953V57.6069ZM51.2529 60.952C51.3355 61.6127 51.6246 62.1166 52.1202 62.4635C52.6157 62.8104 53.2435 62.9838 54.0033 62.9838C54.631 62.9838 55.1514 62.9177 55.5644 62.7856C55.9773 62.6534 56.3903 62.4717 56.8033 62.2405C56.952 62.1413 57.0841 62.0918 57.1997 62.0918C57.3814 62.0918 57.4723 62.2074 57.4723 62.4387C57.4723 62.7856 57.3401 63.1573 57.0758 63.5537C56.8281 63.9502 56.4316 64.2971 55.8865 64.5944C55.3414 64.8752 54.6145 65.0156 53.706 65.0156C52.814 65.0156 51.9963 64.8339 51.2529 64.4705C50.5261 64.0906 49.9479 63.5372 49.5184 62.8104C49.0889 62.067 48.8742 61.1585 48.8742 60.0847C48.8742 59.1432 49.0559 58.309 49.4193 57.5821C49.7993 56.8553 50.3279 56.2854 51.0051 55.8724C51.6989 55.4594 52.5084 55.253 53.4334 55.253C54.4246 55.253 55.2257 55.4594 55.8369 55.8724C56.4646 56.2689 56.9189 56.7892 57.1997 57.4335C57.4971 58.0777 57.6457 58.7632 57.6457 59.4901C57.6457 59.7378 57.6375 59.9608 57.621 60.1591C57.621 60.3408 57.6127 60.4977 57.5962 60.6299C57.5797 60.8446 57.4393 60.952 57.175 60.952H51.2529ZM51.2529 59.2423H55.267C55.3001 58.9615 55.267 58.6724 55.1679 58.375C55.0853 58.0612 54.9036 57.7969 54.6228 57.5821C54.342 57.3674 53.9455 57.26 53.4334 57.26C52.8057 57.26 52.3019 57.4417 51.9219 57.8051C51.5585 58.152 51.3355 58.6311 51.2529 59.2423ZM61.8325 56.814C62.1133 56.2854 62.452 55.9302 62.8484 55.7485C63.2449 55.5503 63.7818 55.4512 64.459 55.4512H64.7316C64.8968 55.4512 64.9794 55.5503 64.9794 55.7485V57.4335C64.9794 57.6317 64.8968 57.7308 64.7316 57.7308H64.0874C63.1788 57.7308 62.5841 57.9621 62.3033 58.4246C62.039 58.8706 61.9069 59.5314 61.9069 60.4069V64.4953C61.9069 64.677 61.8243 64.7679 61.6591 64.7679H59.8007C59.652 64.7679 59.5777 64.677 59.5777 64.4953V55.7485C59.5777 55.5503 59.652 55.4512 59.8007 55.4512H59.9246C60.9983 55.4512 61.6343 55.9055 61.8325 56.814ZM73.3607 63.6033C73.0303 64.0493 72.6091 64.3962 72.097 64.644C71.5849 64.8752 71.0398 64.9909 70.4616 64.9909C69.5365 64.9909 68.7519 64.7679 68.1076 64.3218C67.4799 63.8758 67.0009 63.2811 66.6705 62.5378C66.3566 61.7944 66.1997 60.9768 66.1997 60.0847C66.1997 59.1597 66.3732 58.3337 66.7201 57.6069C67.067 56.8635 67.5625 56.2771 68.2068 55.8476C68.8675 55.4181 69.6356 55.2034 70.5112 55.2034C71.238 55.2034 71.8492 55.3355 72.3448 55.5999C72.8568 55.8642 73.2616 56.178 73.5589 56.5414C73.691 56.1615 73.9058 55.8889 74.2031 55.7237C74.517 55.542 74.8887 55.4512 75.3182 55.4512H75.4421C75.6238 55.4512 75.7146 55.5503 75.7146 55.7485V64.4953C75.7146 64.677 75.6238 64.7679 75.4421 64.7679H73.6085C73.4433 64.7679 73.3607 64.677 73.3607 64.4953V63.6033ZM70.9819 62.7608C71.2958 62.7608 71.6344 62.6947 71.9979 62.5626C72.3778 62.4139 72.6999 62.1496 72.9642 61.7697C73.2285 61.3897 73.3607 60.8281 73.3607 60.0847C73.3607 59.3414 73.2285 58.788 72.9642 58.4246C72.6999 58.0447 72.3861 57.7969 72.0226 57.6812C71.6592 57.5491 71.3206 57.483 71.0067 57.483C70.6763 57.483 70.3212 57.5573 69.9412 57.706C69.5778 57.8547 69.264 58.119 68.9997 58.4989C68.7519 58.8789 68.628 59.4075 68.628 60.0847C68.628 60.7951 68.7601 61.3484 69.0244 61.7449C69.3053 62.1248 69.6274 62.3891 69.9908 62.5378C70.3542 62.6865 70.6846 62.7608 70.9819 62.7608Z" fill="#09312A"/>
+                                <g clip-path="url(#clip0_137_2)">
+                                <rect x="18.106" width="41.2973" height="40.7679" rx="20.3839" fill="#105D50"/>
+                                <circle cx="38.7547" cy="31.3859" r="20.2357" fill="#0B4239"/>
+                                <circle cx="38.7545" cy="40.4713" r="17.7578" fill="#09312A"/>
+                                <path d="M33.4511 36.9229C32.5085 35.6055 32.5085 34.0837 32.5085 32.5733C34.4051 33.709 36.2903 34.8446 37.2443 36.1734L37.619 36.8094V34.22C35.9155 33.1979 34.3029 32.1531 33.4511 30.9606C32.5085 29.6432 32.5085 28.1214 32.5085 26.611C34.4051 27.7467 36.2903 28.8823 37.2443 30.2111L37.619 30.8698V28.2577C35.9155 27.2356 34.3029 26.1908 33.4511 24.9983C32.5085 23.6809 32.5085 22.1591 32.5085 20.6487C34.4051 21.7844 36.2903 22.92 37.2443 24.2488C37.3578 24.4078 37.46 24.5781 37.5509 24.7598C37.3578 24.0557 37.2329 23.397 37.2215 22.7156C37.2102 21.0007 37.9597 19.2404 38.7093 17.4801C39.4929 19.1609 40.2765 20.8531 40.2879 22.568C40.2992 23.2835 40.1743 24.0103 39.9699 24.7258C40.0607 24.5668 40.1516 24.4078 40.2652 24.2488C41.2191 22.92 43.1043 21.7844 45.0009 20.6487C45.0009 22.1591 45.0009 23.6809 44.0583 24.9983C43.2066 26.1908 41.5939 27.2356 39.8904 28.2577V30.8698L40.2652 30.2111C41.2191 28.8823 43.1043 27.7467 45.0009 26.611C45.0009 28.1214 45.0009 29.6432 44.0583 30.9606C43.2066 32.1531 41.5939 33.1979 39.8904 34.22V36.8094L40.2652 36.1734C41.2191 34.8446 43.1043 33.709 45.0009 32.5733C45.0009 34.0837 45.0009 35.6055 44.0583 36.9229C43.2066 38.1154 41.5939 39.1602 39.8904 40.1823V42.2265H37.619V40.1823C35.9155 39.1602 34.3029 38.1154 33.4511 36.9229Z" fill="#FFFCF8"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_137_2">
+                                <rect x="18.106" width="41.2973" height="40.7679" rx="20.3839" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center gap-4">
+                        <div class="hidden md:flex items-center gap-4">
+                            <button class="px-6 py-2 border border-[#09332C] rounded-md text-sm font-semibold hover:bg-gray-100 transition-colors">Masuk</button>
+                            <a href="/daftar.html" class="px-6 py-2 bg-[#09332C] text-white rounded-md text-sm relative font-semibold hover:bg-gray-800 transition-colors overflow-hidden">
+                                Daftar
+                            <span class="absolute bottom-0 right-0">
+                                    <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.3887 13.7367C18.792 14.2628 21.1668 12.7411 21.6929 10.3378C22.219 7.93447 20.6972 5.55971 18.2939 5.0336C15.8906 4.50749 13.5159 6.02925 12.9898 8.43255C12.4637 10.8358 13.9854 13.2106 16.3887 13.7367Z" fill="#FFFCF8"/>
+                                        <path d="M23.3057 23.8011C22.7139 26.5045 22.2341 28.6966 13.5309 26.7914C4.82783 24.8862 5.3077 22.6941 5.89951 19.9907C6.49132 17.2873 10.868 15.9482 15.6743 17.0004C20.4806 18.0525 23.8975 21.0977 23.3057 23.8011Z" fill="#FFFCF8"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="md:hidden">
+                            <button id="menu-btn" class="block hamburger focus:outline-none">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="md:hidden">
+                    <div id="menu" class="hidden flex-col items-center mt-4 space-y-4 bg-white p-6 rounded-lg shadow-xl">
+                        <a href="#" class="w-full text-center py-2 hover:font-bold">Beranda</a>
+                        <a href="#" class="w-full text-center py-2 hover:font-bold">Layanan</a>
+                        <a href="#" class="w-full text-center py-2 hover:font-bold">Kontak Kami</a>
+                        <div class="w-full pt-4 border-t border-gray-200 flex flex-col space-y-2">
+                            <a href="#" class="w-full text-center py-2 border border-gray-300 rounded-lg">Masuk</a>
+                            <a href="#" class="w-full text-center py-2 bg-gray-900 text-white rounded-lg">Daftar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    <div class="container mx-auto p-6 md:p-10 pb-20">
+        
+        <header class="flex flex-col-reverse md:flex-row gap-10 py-10 items-center mb-12">
+            <div class="text-center lg:text-left">
+                <span class="hidden md:inline-flex border-2 border-[#09332C] items-center gap-2 text-brand-dark-green font-semibold px-4 py-2 rounded-full text-sm mb-4">
+                    <img src="/assets/images/camera.svg" class="w-4 h-4" alt="">
+                    Cek Cepat, Sehat Tepat
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold brand-dark-green leading-tight">
+                    Sehat
+                    <span>
+                        <svg class="inline-block align-middle w-6 h-6 md:w-10 md:h-10" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M45.3168 11.6579L33.7834 18.3178V5H25.6167V18.3178L14.0833 11.6579L10 18.7323L21.5313 25.3901L10 32.048L14.0833 39.1224L25.6167 32.4645V45.7823H33.7834V32.4645L45.3168 39.1224L49.4001 32.048L37.8687 25.3901L49.4001 18.7323L45.3168 11.6579Z" fill="#F0531C"/>
+                        </svg>
+                    </span> kini sederhana, cukup abadikan santapanmu 
+                    <span>
+                        <svg class="inline-block align-middle w-10 h-10 md:w-14 md:h-14" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.37403 22.0038C7.41598 21.9706 5.57005 23.5604 5.77667 25.7559C6.20988 30.3535 8.2047 34.6641 11.4291 37.97C12.6445 39.2213 14.0154 40.3117 15.5081 41.2145C15.7679 41.371 15.8703 41.604 15.8652 41.779L15.8544 42.4164C15.8455 42.8968 15.9314 43.3742 16.1073 43.8213C16.2832 44.2685 16.5455 44.6765 16.8794 45.022C17.2132 45.3676 17.612 45.6438 18.0528 45.835C18.4936 46.0262 18.9678 46.1285 19.4482 46.1361L32.0089 46.3487C34.0191 46.3828 35.6922 44.7859 35.7264 42.7653L35.7422 41.83L35.747 41.7947L35.7535 41.7802C35.7778 41.7448 35.8124 41.7177 35.8527 41.7027C37.4718 40.8264 38.965 39.7352 40.2916 38.4586C43.6256 35.2643 45.7651 31.0245 46.3542 26.445C46.635 24.2557 44.844 22.6043 42.8859 22.5711L9.37403 22.0038ZM13.8434 9.57763C14.2577 9.58465 14.6523 9.75597 14.9403 10.0539C15.2283 10.3519 15.3862 10.752 15.3792 11.1664L15.3086 15.3324C15.3016 15.7468 15.1303 16.1414 14.8324 16.4294C14.5344 16.7174 14.1343 16.8753 13.7199 16.8683C13.3056 16.8612 12.911 16.6899 12.623 16.392C12.3349 16.094 12.1771 15.6939 12.1841 15.2795L12.2546 11.1135C12.2616 10.6991 12.433 10.3045 12.7309 10.0165C13.0289 9.72849 13.429 9.57062 13.8434 9.57763ZM38.8398 10.0008C39.2541 10.0078 39.6487 10.1792 39.9367 10.4771C40.2247 10.7751 40.3826 11.1752 40.3756 11.5896L40.3051 15.7556C40.2981 16.17 40.1267 16.5645 39.8288 16.8526C39.5308 17.1406 39.1307 17.2985 38.7163 17.2914C38.302 17.2844 37.9074 17.1131 37.6194 16.8152C37.3314 16.5172 37.1735 16.1171 37.1805 15.7027L37.251 11.5367C37.2581 11.1223 37.4294 10.7277 37.7273 10.4397C38.0253 10.1517 38.4254 9.99381 38.8398 10.0008ZM26.4121 5.62316C26.8264 5.63018 27.221 5.8015 27.509 6.09944C27.7971 6.39739 27.9549 6.79755 27.9479 7.21189L27.8069 15.544C27.7998 15.9584 27.6285 16.353 27.3306 16.641C27.0326 16.929 26.6325 17.0869 26.2181 17.0799C25.8038 17.0728 25.4092 16.9015 25.1212 16.6036C24.8332 16.3056 24.6753 15.9055 24.6823 15.4911L24.8234 7.15899C24.8304 6.74465 25.0017 6.35006 25.2997 6.06204C25.5976 5.77402 25.9978 5.61615 26.4121 5.62316Z" fill="#FFA74F"/>
+                        </svg>
+                    </span>
+                </h1>
+                <p class="mt-4 text-gray-500 max-w-lg font-semibold mx-auto lg:mx-0">
+                    Dapatkan detail kalori, protein, karbohidrat, hingga vitamin yang ada dalam makananmu. Cepat dan akurat.
+                </p>
+                <button class="mt-8 bg-brand-dark-green text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 mx-auto lg:mx-0 hover:opacity-90 transition">
+                    Mulai
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
+          
+            <div class="w-full h-full justify-center items-center inline-flex flex-col">
+                <span class="md:hidden w-[60%] flex border-2 border-[#09332C] items-center justify-center gap-2 text-brand-dark-green font-semibold px-4 py-2 rounded-full text-sm mb-4">
+                    <img src="/assets/images/camera.svg" class="w-4 h-4" alt="">
+                    Cek Cepat, Sehat Tepat
+                </span>
+                <div class="relative w-full mx-auto h-96 flex items-center justify-center">
+                    <div class="absolute -left-20 md:left-auto">
+                        <img src="/assets/images/analisabg.svg" alt="Salad Bowl" class="w-full h-full object-comtain">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="relative w-full h-full border border-transparent rounded-3xl p-6 md:p-8">
+            <svg class="absolute inset-0 w-full h-full rounded-3xl" xmlns="http://www.w3.org/2000/svg">
+                <rect 
+                    class="w-full h-full rounded-3xl" 
+                    fill="none" 
+                    stroke="#09332C"  stroke-width="3"   stroke-dasharray="20 5" rx="8" ry="8"     />
+            </svg>
+            
+            <div class="flex md:flex-row flex-col gap-10 w-full items-start">
+                <div class="w-full">
+                    <div class="bg-brand-light-green p-6 rounded-xl">
+                        <h2 class="font-bold text-lg brand-dark-green flex items-center gap-2 mb-4">
+                            <img src="/assets/images/camera.svg" class="w-6 h-6" alt="">
+                            Upload Foto Makananmu
+                        </h2>
+                        <div class="w-full bg-gray-400 h-[1px] my-5"></div>
+                        <div class="bg-white border-2 border-dashed border-gray-300 rounded-lg py-20 flex flex-col items-center justify-center text-center">
+                            <img src="/assets/images/image.svg" alt="">
+                            <span class="font-semibold hover:opacity-90 transition"><a href="" class="underline">Unggah foto </a>dengan klik atau seret</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row w-full items-start md:items-center gap-x-4 md:gap-x-20 mt-6 text-md text-gray-400">
+                        <div class="flex items-center font-bold gap-2">
+                            <span class="w-4 h-4 rounded bg-amber-400"></span>
+                            <span>Rendah</span>
+                        </div>
+                        <div class="flex items-center font-bold gap-2">
+                            <span class="w-4 h-4 rounded bg-brand-dark-green"></span>
+                            <span>Ideal</span>
+                        </div>
+                        <div class="flex items-center font-bold gap-2">
+                            <span class="w-4 h-4 rounded bg-red-500"></span>
+                            <span>Mencapai/mendekati batas</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w-full flex flex-col gap-10">
+                    <div>
+                        <h3 class="font-bold text-xl brand-dark-green mb-6">Analisis Gizi</h3>
+                        <div class="space-y-5">
+                            <div class="flex items-center gap-3">
+                                <img src="/assets/images/kalori.svg" alt="">
+                                <div class="w-full">
+                                    <p class="text-md font-normal">Kalori <span class="font-bold">- 120kcal </span> (6% dari kebutuhan harian).</p>
+                                    <div class="w-full flex flex-row gap-1">
+                                        <div class="w-[15%] bg-[#09332C] rounded-full h-2 mt-1"></div>
+                                        <div class="w-[85%] bg-[#D5D5D5] rounded-full h-2 mt-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="/assets/images/kalori.svg" alt="">
+                                <div class="w-full">
+                                    <p class="text-md font-normal">Protein <span class="font-bold">- 120kcal </span> (6% dari kebutuhan harian).</p>
+                                    <div class="w-full flex flex-row gap-1">
+                                        <div class="w-[100%] bg-[#09332C] rounded-full h-2 mt-1"></div>
+                                        <!-- <div class="w-[85%] bg-[#D5D5D5] rounded-full h-2 mt-1"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="/assets/images/kalori.svg" alt="">
+                                <div class="w-full">
+                                    <p class="text-md font-normal">Natrium <span class="font-bold">- 120kcal </span> (6% dari kebutuhan harian).</p>
+                                    <div class="w-full flex flex-row gap-1">
+                                        <div class="w-[5%] bg-[#FFA74F] rounded-full h-2 mt-1"></div>
+                                        <div class="w-[95%] bg-[#D5D5D5] rounded-full h-2 mt-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="/assets/images/kalori.svg" alt="">
+                                <div class="w-full">
+                                    <p class="text-md font-normal">Lemak <span class="font-bold">- 120kcal </span> (6% dari kebutuhan harian).</p>
+                                    <div class="w-full flex flex-row gap-1">
+                                        <div class="w-[100%] bg-[#F0531C] rounded-full h-2 mt-1"></div>
+                                        <!-- <div class="w-[85%] bg-[#D5D5D5] rounded-full h-2 mt-1"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="/assets/images/kalori.svg" alt="">
+                                <div class="w-full">
+                                    <p class="text-md font-normal">Gula <span class="font-bold">- 120kcal </span> (6% dari kebutuhan harian).</p>
+                                    <div class="w-full flex flex-row gap-1">
+                                        <div class="w-[85%] bg-[#F0531C] rounded-full h-2 mt-1"></div>
+                                        <div class="w-[15%] bg-[#D5D5D5] rounded-full h-2 mt-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl brand-dark-green mb-6">Ringkasan</h3>
+                        <div class="">
+                            <p class="text-gray-500">
+                                <svg class="inline-block align-middle w-6 h-6 md:w-8 md:h-8" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.37051 16.2916L10.1344 4.99952C10.2769 4.76489 10.4773 4.57091 10.7165 4.43629C10.9557 4.30168 11.2256 4.23096 11.5001 4.23096C11.7745 4.23096 12.0444 4.30168 12.2836 4.43629C12.5228 4.57091 12.7232 4.76489 12.8657 4.99952L19.6296 16.2916C19.769 16.5331 19.8427 16.8069 19.8434 17.0858C19.8441 17.3646 19.7719 17.6388 19.6338 17.8811C19.4957 18.1233 19.2966 18.3252 19.0563 18.4667C18.816 18.6081 18.5428 18.6842 18.264 18.6874H4.73614C4.45718 18.6845 4.18385 18.6086 3.94337 18.4672C3.70289 18.3258 3.50366 18.1239 3.36551 17.8815C3.22737 17.6392 3.15514 17.3648 3.15601 17.0859C3.15689 16.8069 3.23084 16.533 3.37051 16.2916ZM11.5001 8.62489C11.7542 8.62489 11.998 8.72586 12.1777 8.90558C12.3574 9.08531 12.4584 9.32906 12.4584 9.58323V12.4582C12.4584 12.7124 12.3574 12.9561 12.1777 13.1359C11.998 13.3156 11.7542 13.4166 11.5001 13.4166C11.2459 13.4166 11.0021 13.3156 10.8224 13.1359C10.6427 12.9561 10.5417 12.7124 10.5417 12.4582V9.58323C10.5417 9.32906 10.6427 9.08531 10.8224 8.90558C11.0021 8.72586 11.2459 8.62489 11.5001 8.62489ZM10.5417 15.3332C10.5417 15.0791 10.6427 14.8353 10.8224 14.6556C11.0021 14.4759 11.2459 14.3749 11.5001 14.3749H11.5077C11.7619 14.3749 12.0056 14.4759 12.1854 14.6556C12.3651 14.8353 12.4661 15.0791 12.4661 15.3332C12.4661 15.5874 12.3651 15.8312 12.1854 16.0109C12.0056 16.1906 11.7619 16.2916 11.5077 16.2916H11.5001C11.2459 16.2916 11.0021 16.1906 10.8224 16.0109C10.6427 15.8312 10.5417 15.5874 10.5417 15.3332Z" fill="#FF4F4F"/>
+                                </svg>
+                            Kurangi makanan berlemak dan manis agar lebih seimbang.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="text-white"> 
+        <div class="bg-[#1A3A31] px-6 py-8 md:px-12">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <div>
+                    <h2 class="text-3xl font-bold">Newsletter kami</h2>
+                    <p class="text-gray-300 mt-1">Dari Sehat Raih Sejahtera. Yuk, dapatkan tips sehat bersama Sehatera!</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="#" class="inline-block border-2 border-[#F8A531] text-[#F8A531] font-semibold rounded-full px-8 py-3 transition-colors duration-300 hover:bg-[#F8A531] hover:text-[#1A3A31]">
+                        Gabung Mitra
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bg px-6 py-16 md:px-12">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                    <div>
+                        <a href="#" class="flex items-center gap-3 mb-4">
+                            <img src="/assets/images/sehatera-footer.svg" class="h-10 md:h-20" alt="">
+                        </a>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Sehatera hadir untuk mendukung pola makan sehat masyarakat Indonesia dengan solusi gizi cerdas.
+                        </p>
+                        <div class="flex items-center gap-5 mt-6">
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8.56,5.19 6.88,5.19C5.19,5.19 5.19,6 5.19,6.88A1.68,1.68 0 0,0 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" /></svg></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Sehatera</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Makanan</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Rekomendasi Gizi</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Ibu Hamil</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Reward Bergizi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Kontak Kami</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Kontak Kami</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
+                                <span class="text-gray-300">sehatera@gmail.com</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+                                <span class="text-gray-300">+62 877 2513 2481</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <hr class="border-white my-10">
+                <div class="text-center text-sm">
+                    &copy; 2025 Sehatera. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
