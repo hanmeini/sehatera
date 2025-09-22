@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analisis Ibu Hamil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB; /* bg-gray-50 */
+        }
+        /* Custom brand colors */
+        .brand-red-light { background-color: #FEE2E2; } /* red-100 */
+        .text-brand-red { color: #DC2626; } /* red-600 */
+        .brand-orange-light { background-color: #FFEDD5; } /* orange-100 */
+        .text-brand-orange { color: #F97316; } /* orange-500 */
+        .brand-teal-light { background-color: #F0FDFA; } /* teal-50 */
+        .text-brand-teal { color: #0D9488; } /* teal-600 */
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="flex min-h-screen">
+        <aside class="w-64 flex-shrink-0 bg-white p-6 hidden lg:flex flex-col border-r">
+            <a href="#" class="flex items-center gap-3">
+                <img src="https://i.ibb.co/L632k06/food-corner.png" alt="Sehatera Logo" class="h-8 w-8">
+                <span class="text-xl font-bold text-gray-900">sehatera</span>
+            </a>
+            <nav class="mt-10 flex-1">
+                <ul class="space-y-2">
+                    <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100 font-semibold"><span>🏠</span> Beranda</a></li>
+                    <li class="relative">
+                         <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-gray-100 text-gray-900 font-bold"><span>🧩</span> Layanan</a>
+                        <ul class="mt-2 pl-5 space-y-2">
+                            <li class="relative pl-3"><span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span><a href="#" class="block text-gray-500 hover:text-gray-900">Analisis Makanan</a></li>
+                             <li class="relative pl-3"><span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span><a href="#" class="block text-gray-500 hover:text-gray-900">Rekomendasi Gizi</a></li>
+                             <li class="relative pl-3"><span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span><a href="#" class="block text-gray-900 font-semibold">Analisis Kandungan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100 font-semibold"><span>🎁</span> Reward Bergizi</a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100 font-semibold"><span>📞</span> Kontak Kami</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            <header class="flex items-center gap-4">
+                <div class="w-12 h-12 flex-shrink-0 bg-red-100 text-red-600 rounded-lg flex items-center justify-center font-bold text-2xl">S</div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">Analisis Ibu Hamil</h1>
+                    <p class="text-gray-500">Temani perjalanan kehamilanmu dengan pemantauan gizi yang tepat</p>
+                </div>
+            </header>
+
+            <section class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="brand-red-light text-brand-red p-4 rounded-xl">
+                    <p class="text-sm font-semibold opacity-70">Usia Kehamilan</p>
+                    <p class="text-3xl font-bold mt-1">17 Minggu</p>
+                </div>
+                <div class="brand-orange-light text-brand-orange p-4 rounded-xl">
+                    <p class="text-sm font-semibold opacity-70">Trimester</p>
+                    <p class="text-3xl font-bold mt-1">2</p>
+                </div>
+                <div class="bg-gray-100 text-gray-600 p-4 rounded-xl">
+                    <p class="text-sm font-semibold opacity-70">Status Gizi</p>
+                    <p class="text-3xl font-bold mt-1">Baik</p>
+                </div>
+            </section>
+
+            <section class="mt-6 bg-white p-6 rounded-2xl shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="font-bold text-lg flex items-center gap-2">😊 Jurnal Perasaan Ibu</h2>
+                        <div class="mt-4 flex justify-between text-center">
+                            <button class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800"> <span class="text-3xl">😊</span> <span class="text-xs font-semibold">Senang</span> </button>
+                            <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl">🤢</span> <span class="text-xs font-semibold">Mual</span> </button>
+                            <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl">😠</span> <span class="text-xs font-semibold">Marah</span> </button>
+                            <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl">😥</span> <span class="text-xs font-semibold">Sedih</span> </button>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">Apa gejala yang dirasakan?</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <button class="text-sm bg-gray-800 text-white px-3 py-1 rounded-full">Sakit punggung</button>
+                            <button class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200">Mual</button>
+                            <button class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200">Pusing</button>
+                            <button class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200">Kram</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-end">
+                             <select class="text-sm font-semibold border-none bg-gray-100 rounded-md p-1 focus:ring-0">
+                                <option>Penanggalan</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-7 gap-1 text-center text-sm mt-3">
+                            <span class="p-2 font-bold text-red-500">M</span> <span class="p-2 font-bold">S</span> <span class="p-2 font-bold">S</span> <span class="p-2 font-bold">R</span> <span class="p-2 font-bold">K</span> <span class="p-2 font-bold">J</span> <span class="p-2 font-bold">S</span>
+                            <button class="p-2 bg-gray-800 text-white rounded-full">1</button> <button class="p-2 hover:bg-gray-100 rounded-full">2</button> <button class="p-2 hover:bg-gray-100 rounded-full">3</button> <button class="p-2 hover:bg-gray-100 rounded-full">4</button>
+                            <button class="p-2 hover:bg-gray-100 rounded-full">5</button> <button class="p-2 hover:bg-gray-100 rounded-full">6</button> <button class="p-2 hover:bg-gray-100 rounded-full">7</button> <button class="p-2 hover:bg-gray-100 rounded-full">8</button>
+                            <button class="p-2 hover:bg-gray-100 rounded-full">9</button> <button class="p-2 hover:bg-gray-100 rounded-full">10</button> <button class="p-2 hover:bg-gray-100 rounded-full">11</button> <button class="p-2 hover:bg-gray-100 rounded-full">12</button>
+                            <button class="p-2 hover:bg-gray-100 rounded-full">13</button> <button class="p-2 hover:bg-gray-100 rounded-full">14</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-6 bg-white p-6 rounded-2xl shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h2 class="font-bold text-lg mb-4">📝 Catat Gizi Harian</h2>
+                        <div class="bg-gray-50 border-2 border-dashed rounded-lg p-4 text-center">
+                             <p class="text-sm font-semibold mb-2">Upload Foto Makananmu</p>
+                             <div class="bg-white p-8 rounded-md">
+                                 <svg class="w-10 h-10 text-gray-300 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                 <p class="text-xs text-gray-400 mt-2">Unggah foto spesifik makanan</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-4">Hasil Analisis</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3"><span class="text-gray-400">🔥</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                            <div class="flex items-center gap-3"><span class="text-gray-400">💪</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                            <div class="flex items-center gap-3"><span class="text-gray-400">🧂</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                            <div class="flex items-center gap-3"><span class="text-gray-400">💊</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                            <div class="flex items-center gap-3"><span class="text-gray-400">🌿</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                            <div class="flex items-center gap-3"><span class="text-gray-400">💧</span><div class="flex-1 h-2 bg-gray-200 rounded-full"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="mt-6 space-y-6">
+                <section class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h2 class="font-bold text-lg mb-4">📊 Rekap Analisis Mingguan</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <div class="flex items-center gap-2"> <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">💊</div> <h3 class="font-bold">Asam Folat</h3> </div>
+                            <p class="text-xs text-gray-500 mt-1">Mencegah cacat tabung saraf pada janin</p>
+                            <div class="w-full bg-gray-200 h-1.5 rounded-full mt-3"><div class="bg-emerald-500 h-1.5 rounded-full" style="width: 70%;"></div></div>
+                            <p class="text-xs text-gray-500 mt-1 text-right">1.450/4.200 mcg</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <div class="flex items-center gap-2"> <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100 text-red-600">🌿</div> <h3 class="font-bold">Zat Besi</h3> </div>
+                            <p class="text-xs text-gray-500 mt-1">Mencegah cacat tabung saraf pada janin</p>
+                            <div class="w-full bg-gray-200 h-1.5 rounded-full mt-3"><div class="bg-red-500 h-1.5 rounded-full" style="width: 50%;"></div></div>
+                            <p class="text-xs text-gray-500 mt-1 text-right">1.450/4.200 mcg</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <div class="flex items-center gap-2"> <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600">💧</div> <h3 class="font-bold">Kalsium</h3> </div>
+                            <p class="text-xs text-gray-500 mt-1">Mencegah cacat tabung saraf pada janin</p>
+                            <div class="w-full bg-gray-200 h-1.5 rounded-full mt-3"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 85%;"></div></div>
+                            <p class="text-xs text-gray-500 mt-1 text-right">1.450/4.200 mcg</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h2 class="font-bold text-lg mb-4">🥗 Makanan Pilihan Trimester 2</h2>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="relative rounded-xl overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format=fit=crop" class="absolute w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 p-4 text-white"> <span class="text-xs font-bold bg-green-600 px-2 py-0.5 rounded-full">SARAPAN</span> <h3 class="font-bold mt-1">Quinoa</h3> <p class="text-xs">Kaya magnesium, folat</p> </div>
+                        </div>
+                        <div class="relative rounded-xl overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format=fit=crop" class="absolute w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 p-4 text-white"> <span class="text-xs font-bold bg-orange-600 px-2 py-0.5 rounded-full">IKAN</span> <h3 class="font-bold mt-1">Salmon</h3> <p class="text-xs">Kaya Omega-3, protein</p> </div>
+                        </div>
+                        <div class="relative rounded-xl overflow-hidden h-48">
+                             <img src="https://images.unsplash.com/photo-1600688640154-90b1e6021115?q=80&w=2070&auto=format=fit=crop" class="absolute w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 p-4 text-white"> <span class="text-xs font-bold bg-yellow-600 px-2 py-0.5 rounded-full">KACANG</span> <h3 class="font-bold mt-1">Kacang Almond</h3> <p class="text-xs">Kaya kalsium, serat</p> </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
