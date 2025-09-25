@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Analisis Ibu Hamil</title>
+    <link rel="shortcut icon" href="/assets/images/logo-sehatera.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,35 +21,41 @@
         .text-brand-orange { color: #F97316; } /* orange-500 */
         .brand-teal-light { background-color: #F0FDFA; } /* teal-50 */
         .text-brand-teal { color: #0D9488; } /* teal-600 */
+        .footer-bg{
+            background-image: 
+                linear-gradient(rgba(39, 61, 51, 0.9), rgba(39, 61, 51, 0.9)), 
+                url('/assets/images/footer.png');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 flex flex-col min-h-screen">
+    <!-- Sidebar Responsive -->
+    <!-- Mobile Navbar -->
+    <nav class="lg:hidden flex fixed w-full items-center justify-between px-4 py-2 border-b bg-white">
+        <!-- Hamburger -->
+        <button id="btn-sidebar" class="text-[#09332C] focus:outline-none">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <!-- Logo Center -->
+        <div class="flex flex-col items-center">
+            <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-7 w-7">
+            <span class="text-lg font-bold text-[#09332C]">sehatera</span>
+        </div>
+        <!-- Placeholder for spacing -->
+        <div class="w-7"></div>
+    </nav>
 
-    <div class="flex min-h-screen">
-        <!-- Sidebar Responsive -->
-        <!-- Mobile Navbar -->
-        <nav class="lg:hidden flex fixed w-full items-center justify-between px-4 py-6 border-b bg-white">
-            <!-- Hamburger -->
-            <button id="btn-sidebar" class="text-[#09332C] focus:outline-none">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
-            <!-- Logo Center -->
-            <div class="flex items-center gap-2">
-                <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-7 w-7">
-                <span class="text-lg font-bold text-[#09332C]">sehatera</span>
-            </div>
-            <!-- Placeholder for spacing -->
-            <div class="w-7"></div>
-        </nav>
-
+    <div class="flex-flex-1">
         <!-- Sidebar Overlay (Mobile) -->
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
         <!-- Sidebar Drawer -->
         <aside id="sidebar"
             class="fixed top-0 left-0 h-full w-64 bg-white z-50 border-r p-6 flex flex-col transition-transform duration-200 -translate-x-full lg:translate-x-0 lg:static lg:flex lg:w-64 lg:z-0 lg:p-6">
-            <a href="#" class="flex items-center gap-3 mb-6">
+            <a href="index.html" class="flex items-center gap-3 mb-6">
                 <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-8 w-8">
                 <span class="text-xl font-bold text-[#09332C]">sehatera</span>
             </a>
@@ -56,34 +63,34 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
-                            <span><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6"></path></svg></span>
+                        <a href="/dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
+                            <span><img src="assets/images/home.svg" alt=""></span>
                             Beranda
                         </a>
                     </li>
                     <li class="relative">
                         <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-bold bg-gray-100">
-                            <span><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v16h16V4H4zm4 4h8v8H8V8z"></path></svg></span>
+                            <span><img src="assets/images/puzzle.svg" alt=""></span>
                             Layanan
                         </a>
                         <ul class="mt-2 pl-5 space-y-2 border-l-2 border-[#09332C] ml-2">
                             <li>
-                                <a href="#" class="block text-[#09332C] hover:font-bold py-1 pl-4">Analisis Makanan</a>
+                                <a href="/analisa-makanan.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Analisis Makanan</a>
                             </li>
                             <li>
-                                <a href="#" class="block text-[#09332C] hover:font-bold py-1 pl-4">Rekomendasi Gizi</a>
+                                <a href="/dashboard.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Rekomendasi Gizi</a>
                             </li>
                             <li>
-                                <a href="#" class="block text-[#09332C] font-semibold py-1 pl-4">Analisis Kandungan</a>
+                                <a href="analisa-kandungan.html" class="block text-[#09332C] font-semibold py-1 pl-4">Analisis Kandungan</a>
                             </li>
                             <li>
-                                <a href="#" class="block text-[#09332C] hover:font-bold py-1 pl-4">Reward Bergizi</a>
+                                <a href="profile.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Reward Bergizi</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
-                            <span><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5a8.38 8.38 0 01-1.9.5A8.5 8.5 0 013 12.5V19a2 2 0 002 2h14a2 2 0 002-2v-6.5a8.38 8.38 0 01-1.9-.5"></path></svg></span>
+                        <a href="/kontak" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
+                            <span><img src="assets/images/kontak.svg" alt=""></span>
                             Kontak Kami
                         </a>
                     </li>
@@ -167,7 +174,7 @@
             </div>
             <section id="section-jurnal" class="mt-6 w-full flex md:flex-row flex-col gap-6">
                 <!-- Jurnal Perasaan Ibu -->
-                <div class="border rounded-2xl bg-white md:p-6 shadow-sm w-full">
+                <div class="border rounded-2xl bg-white md:p-6 shadow-sm flex-1 md:max-w-[60%]">
                     <h2 class="font-bold text-lg flex items-center gap-2"><span><img src="assets/images/wink.svg" alt=""></span> Jurnal Perasaan Ibu</h2>
                     <div class="mt-4 flex justify-between text-center">
                         <button class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800"> <span class="text-3xl"><img src="assets/images/senang.svg" alt=""></span> <span class="text-xs font-semibold">Senang</span> </button>
@@ -184,7 +191,7 @@
                     </div>
                 </div>
                 <!-- Trimester & Minggu -->
-                <div class="bg-white p-6 rounded-2xl w-full justify-end items-end shadow-sm">
+                <div class="bg-white p-6 rounded-2xl md:max-w-[40%] w-full justify-end items-end shadow-sm">
                     <div class="flex justify-between items-end mb-4">
                         <select id="trimesterSelect" class="text-sm font-semibold border border-gray-300 bg-[#09332C] rounded-md p-2 text-white focus:ring-0">
                             <option value="1">Trimester 1</option>
@@ -193,7 +200,7 @@
                         </select>
                         <h2 class="text-gray-400">Minggu ke</h2>
                     </div>
-                    <div id="mingguGrid" class="grid grid-cols-4 gap-2 text-center text-sm mt-3"></div>
+                    <div id="mingguGrid" class="grid grid-cols-4 gap-1 text-center text-sm mt-3"></div>
                 </div>
             </section>
 
@@ -518,9 +525,82 @@
                     </div>
                 </section>
             </section>
-
         </main>
     </div>
+
+                <!-- Footer -->
+        <footer class="text-white"> 
+            <div class="bg-[#1A3A31] px-6 py-8 md:px-12">
+                        <div class="flex items-center justify-between flex-row mb-3">
+                            <h2 class="text-xl md:text-3xl font-bold">Newsletter kami</h2>
+                            <div class="flex-shrink-0">
+                                <a href="#" class="inline-block border-2 border-[#F8A531] text-[#F8A531] font-semibold rounded-full px-8 py-3 transition-colors duration-300 hover:bg-[#F8A531] hover:text-[#1A3A31]">
+                                    Gabung Mitra
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mt-1 text-left">Dari Sehat Raih Sejahtera. Yuk, dapatkan tips sehat bersama Sehatera!</p>
+            </div>
+
+            <div class="footer-bg px-6 py-16 md:px-12">
+                <div class="container mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                        <div>
+                            <a href="#" class="flex items-center gap-3 mb-4">
+                                <img src="/assets/images/sehatera-footer.svg" class="h-10 md:h-20" alt="">
+                            </a>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Sehatera hadir untuk mendukung pola makan sehat masyarakat Indonesia dengan solusi gizi cerdas.
+                            </p>
+                            <div class="flex items-center gap-5 mt-6">
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8.56,5.19 6.88,5.19C5.19,5.19 5.19,6 5.19,6.88A1.68,1.68 0 0,0 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" /></svg></a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Sehatera</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Makanan</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Rekomendasi Gizi</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Ibu Hamil</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Reward Bergizi</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Kontak Kami</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Kontak Kami</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
+                                    <span class="text-gray-300">sehatera@gmail.com</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+                                    <span class="text-gray-300">+62 877 2513 2481</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <hr class="border-white my-10">
+                    <div class="text-center text-sm">
+                        &copy; 2025 Sehatera. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
     <script>
         // Dropdown trimester dan minggu
         const mingguGrid = document.getElementById('mingguGrid');
@@ -582,33 +662,33 @@ btnGizi.addEventListener('click', function() {
     sectionGizi.classList.remove('hidden');
 });
 </script>
-    <!-- filepath: c:\Users\X1 CARBON\OneDrive\Desktop\Sehatera\analisa-kandungan.html -->
-    <script>
-// Sidebar mobile toggle
-const btnSidebar = document.getElementById('btn-sidebar');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-function openSidebar() {
-    sidebar.classList.remove('-translate-x-full');
-    sidebarOverlay.classList.remove('hidden');
-}
-function closeSidebar() {
-    sidebar.classList.add('-translate-x-full');
-    sidebarOverlay.classList.add('hidden');
-}
-btnSidebar && btnSidebar.addEventListener('click', openSidebar);
-sidebarOverlay && sidebarOverlay.addEventListener('click', closeSidebar);
+<script>
+    // Sidebar mobile toggle
+    const btnSidebar = document.getElementById('btn-sidebar');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-// Close sidebar on desktop resize
-window.addEventListener('resize', () => {
-    if(window.innerWidth >= 1024) {
+    function openSidebar() {
         sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.remove('hidden');
     }
-});
+    function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+    }
+    btnSidebar && btnSidebar.addEventListener('click', openSidebar);
+    sidebarOverlay && sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on desktop resize
+    window.addEventListener('resize', () => {
+        if(window.innerWidth >= 1024) {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        } else {
+            sidebar.classList.add('-translate-x-full');
+        }
+    });
 </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F9FAFB; /* bg-gray-50 */
+            background-color: #ffffff; 
         }
         /* Custom brand colors */
         .brand-green { color: #059669; } /* emerald-600 */
@@ -19,203 +19,394 @@
         .border-brand-green { border-color: #059669; }
         .brand-orange { color: #EA580C; } /* orange-600 */
         .bg-brand-orange { background-color: #EA580C; }
+        .footer-bg{
+            background-image: 
+                linear-gradient(rgba(39, 61, 51, 0.9), rgba(39, 61, 51, 0.9)), 
+                url('/assets/images/footer.png');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 flex flex-col min-h-screen">
+    <!-- Mobile Navbar -->
+    <nav class="lg:hidden flex fixed w-full items-center justify-between px-4 py-2 border-b bg-white">
+        <!-- Hamburger -->
+        <button id="btn-sidebar" class="text-[#09332C] focus:outline-none">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <!-- Logo Center -->
+        <div class="flex flex-col items-center">
+            <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-7 w-7">
+            <span class="text-lg font-bold text-[#09332C]">sehatera</span>
+        </div>
+        <!-- Placeholder for spacing -->
+        <div class="w-7"></div>
+    </nav>
 
-    <div class="flex min-h-screen">
-        <aside class="w-64 flex-shrink-0 bg-white p-6 hidden lg:flex flex-col">
-            <a href="#" class="flex items-center gap-3">
-                <img src="https://i.ibb.co/L632k06/food-corner.png" alt="Sehatera Logo" class="h-8 w-8">
-                <span class="text-xl font-bold text-gray-900">sehatera</span>
+    <div class="flex flex-1">
+        <!-- Sidebar Overlay (Mobile) -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
+        <!-- Sidebar Drawer -->
+        <aside id="sidebar"
+            class="fixed top-0 left-0 h-full w-64 bg-white z-50 border-r p-6 flex flex-col transition-transform duration-200 -translate-x-full lg:translate-x-0 lg:static lg:flex lg:w-64 lg:z-0 lg:p-6">
+            <a href="index.html" class="flex items-center gap-3 mb-6">
+                <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-8 w-8">
+                <span class="text-xl font-bold text-[#09332C]">sehatera</span>
             </a>
-
-            <nav class="mt-10 flex-1">
+            <hr class="my-2 border-gray-200">
+            <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-gray-100 font-bold text-gray-900">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                            <span>Beranda</span>
+                        <a href="/dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
+                            <span><img src="assets/images/home.svg" alt=""></span>
+                            Beranda
                         </a>
                     </li>
                     <li class="relative">
-                         <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-                            <span>Layanan</span>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-bold bg-gray-100">
+                            <span><img src="assets/images/puzzle.svg" alt=""></span>
+                            Layanan
                         </a>
-                        <ul class="mt-2 pl-5 space-y-2">
-                            <li class="relative pl-3">
-                                <span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span>
-                                <a href="#" class="block text-gray-500 hover:text-gray-900">Analisis Makanan</a>
+                        <ul class="mt-2 pl-5 space-y-2 border-l-2 border-[#09332C] ml-2">
+                            <li>
+                                <a href="/analisa-makanan.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Analisis Makanan</a>
                             </li>
-                             <li class="relative pl-3">
-                                <span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span>
-                                <a href="#" class="block text-gray-500 hover:text-gray-900">Rekomendasi Gizi</a>
+                            <li>
+                                <a href="/dashboard.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Rekomendasi Gizi</a>
                             </li>
-                             <li class="relative pl-3">
-                                <span class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></span>
-                                <a href="#" class="block text-gray-500 hover:text-gray-900">Analisis Kandungan</a>
+                            <li>
+                                <a href="analisa-kandungan.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Analisis Kandungan</a>
+                            </li>
+                            <li>
+                                <a href="profile.html" class="block text-[#09332C] font-semibold hover:font-bold py-1 pl-4">Reward Bergizi</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
-                            <span>Reward Bergizi</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <span>Kontak Kami</span>
+                        <a href="/kontak" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
+                            <span><img src="assets/images/kontak.svg" alt=""></span>
+                            Kontak Kami
                         </a>
                     </li>
                 </ul>
             </nav>
         </aside>
 
-        <main class="flex-1 p-6 md:p-8">
-            <header>
-                <p class="text-gray-500">Hi Keynatasha,</p>
-                <h1 class="text-3xl font-bold text-gray-900">Selamat Datang Kembali!</h1>
-            </header>
-
-            <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm p-6 flex flex-col items-center text-center">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Profile Picture" class="w-24 h-24 rounded-full border-4 border-white shadow-md">
-                        <button class="absolute bottom-0 right-0 bg-gray-800 text-white w-7 h-7 rounded-full flex items-center justify-center hover:bg-gray-900">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"/></svg>
+        <div class="flex-1 flex-col flex">
+            <main class="flex-1 p-6 md:p-8">
+                <header>
+                    <p class="text-gray-500">Hi Keynatasha,</p>
+                    <h1 class="text-3xl font-bold text-gray-900">Selamat Datang Kembali!</h1>
+                </header>
+    
+                <!-- Kontainer Grid Utama - DITAMBAHKAN lg:items-start -->
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:items-start">
+                    
+                    <!-- Kolom 1: Profil -->
+                    <div class="bg-white rounded-2xl shadow-sm p-6 flex flex-col items-center text-center border border-gray-200">
+                        <div class="relative">
+                            <img src="/assets/images/pp.png" alt="Profile Picture" class="w-28 h-28 rounded-full">
+                            <button class="absolute bottom-0 right-0 bg-[#09332C] text-white w-7 h-7 rounded-full flex items-center justify-center hover:bg-gray-900">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"/></svg>
+                            </button>
+                        </div>
+                        <div class="w-full mt-6 space-y-4 text-left">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <label class="text-xs text-gray-500">Nama</label>
+                                    <button class="text-xs text-[#F0531C] hover:underline">Edit</button>
+                                </div>
+                                <p class="font-semibold">Keynatasha Aurelly</p>
+                            </div>
+                            <hr class="border-t border-gray-200">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <label class="text-xs text-gray-500">Email</label>
+                                    <button class="text-xs text-[#F0531C] hover:underline">Edit</button>
+                                </div>
+                                <p class="font-semibold">Telurceplok@gmail.com</p>
+                            </div>
+                            <hr class="border-t border-gray-200">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <label class="text-xs text-gray-500">No. Telepon</label>
+                                    <button class="text-xs text-[#F0531C] hover:underline">Edit</button>
+                                </div>
+                                <div class="flex flex-row items-center">
+                                    <p>+62</p>
+                                    <hr class="border-l border-gray-300 h-5 mx-2">
+                                    <p class="font-semibold text-gray-400">Masukkan no telepon</p>
+                                </div>
+                            </div>
+                            <hr class="border-t border-gray-200">
+                        </div>
+                        <button class="w-auto bg-[#D10B0B] text-white font-normal flex self-start gap-2 flex-row items-center items-start px-4 py-2.5 rounded-lg hover:bg-red-600 transition mt-6">
+                            <span><img src="assets/images/logout.svg" alt=""></span>
+                            Keluar akun
                         </button>
                     </div>
-                    <div class="w-full mt-6 space-y-4 text-left">
-                        <div>
+    
+                    <!-- Kolom 2: Reward & Riwayat -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- Kartu Reward - DITAMBAHKAN border -->
+                        <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                             <div class="flex justify-between items-center">
-                                <label class="text-xs text-gray-500">Nama</label>
-                                <button class="text-xs text-blue-600 hover:underline">Edit</button>
+                                <div class="flex items-center gap-2">
+                                    <img src="/assets/images/kado.svg" alt="Reward Icon" class="w-6 h-6">
+                                    <h2 class="text-xl font-bold text-[#09332C]">Reward Sehat Kamu</h2>
+                                </div>
+                                <a href="#" class="text-sm font-semibold text-[#09332C] hover:underline">Lihat semua</a>
                             </div>
-                            <p class="font-semibold">Keynatasha Aurelly</p>
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Reward Card: Free Jus Boost -->
+                                <div class="bg-[#09332C] text-white p-5 rounded-xl">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                            <img src="assets/images/boost.png" class="object-cover rounded-full" alt="">
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Free jus Boost</h3>
+                                            <div class="flex gap-1 items-center">
+                                                <img src="assets/images/pin.svg" alt="">
+                                                <p class="text-xs text-gray-300">Mall Kota Kasablanka, Lt. 2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 flex items-end gap-2">
+                                        <span class="text-5xl font-extrabold leading-none">60</span>
+                                        <span class="font-semibold pb-1">Poin aktif</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 flex-row">
+                                        <img src="/assets/images/white-calendar.svg" class="w-5 h-5" alt="">
+                                        <p class="text-xs mt-2">Berlaku sampai dengan 31/12/2025</p>
+                                    </div>
+                                    <div class="flex flex-col w-full gap-2 mt-2 text-xs">
+                                        <div class="flex items-center justify-between">
+                                            <span>60/200 Poin</span>
+                                            <span>30%</span>
+                                        </div>
+                                        <div class="w-full flex gap-1 rounded-full">
+                                            <div class="bg-[#F0531C] h-6 rounded-full w-[45%]"></div>
+                                            <div class="bg-white h-6 rounded-full w-[55%]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Reward Card: Greenly Salad -->
+                                <div class="bg-[#F0531C] text-white p-5 rounded-xl">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center font-bold text-[#F0531C]">
+                                            <span class="text-3xl">gi</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Greenly Salad</h3>
+                                            <div class="flex gap-1">
+                                                <img src="assets/images/pin.svg" alt="">
+                                                <p class="text-xs text-gray-100">Jl. Jenderal Sudirman No. 08</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 flex items-end gap-2">
+                                        <span class="text-5xl font-extrabold leading-none">60</span>
+                                        <span class="font-semibold pb-1">Poin aktif</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 flex-row">
+                                        <img src="/assets/images/white-calendar.svg" class="w-5 h-5" alt="">
+                                        <p class="text-xs mt-2">Berlaku sampai dengan 31/12/2025</p>
+                                    </div>
+                                    <div class="flex flex-col w-full gap-2 mt-2 text-xs">
+                                        <div class="flex items-center justify-between">
+                                            <span>60/60 Poin</span>
+                                            <span>100%</span>
+                                        </div>
+                                        <div class="w-full flex gap-1 rounded-full">
+                                            <div class="bg-[#FFA74F] h-6 rounded-full w-[85%]"></div>
+                                            <div class="bg-[#09332C] h-6 rounded-full w-[25%] flex items-center justify-center">Klaim</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                         <div>
+                        <!-- Kartu Riwayat Pencapaian -->
+                        <div class="bg-white rounded-2xl shadow-sm p-6">
                             <div class="flex justify-between items-center">
-                                <label class="text-xs text-gray-500">Email</label>
-                                <button class="text-xs text-blue-600 hover:underline">Edit</button>
+                                <div class="flex items-center gap-2">
+                                    <img src="/assets/images/riwayat.svg" alt="History Icon" class="w-6 h-6">
+                                    <h2 class="text-xl font-bold text-[#09332C]">Riwayat Pencapaian</h2>
+                                </div>
+                                <a href="#" class="text-sm font-semibold underline text-[#09332C] hover:underline">Semua riwayat</a>
                             </div>
-                            <p class="font-semibold">Telurceplok@gmail.com</p>
-                        </div>
-                         <div>
-                            <div class="flex justify-between items-center">
-                                <label class="text-xs text-gray-500">No. Telepon</label>
-                                <button class="text-xs text-blue-600 hover:underline">Edit</button>
+                            <div class="mt-4 space-y-4">
+                                <!-- Item Riwayat: Protein Harian -->
+                                <div class="flex items-center gap-4 border rounded-xl p-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-lg flex bg-[#09332C]/20 border border-[#09332C] items-center justify-center">
+                                        <img src="assets/images/protein.svg" alt="">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <div class="flex flex-row justify-between">
+                                            <h3 class="font-semibold">Protein Harian</h3>
+                                            <div class="flex gap-1 items-center">
+                                                <img src="assets/images/coin.svg" alt="">
+                                                <span class="font-bold text-[#FFA74F] text-lg">+20</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-500">Mencapai target protein harian 70g</p>
+                                        <div class="flex flex-col w-full items-center gap-2 mt-1">
+                                            <div class="flex w-full justify-between"> 
+                                                <span class="text-xs font-medium">71g/70g</span>
+                                                <p class="text-xs text-gray-400">Senin, 11 Sept 2025</p>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full">
+                                                <div class="bg-[#09332C] h-4 rounded-full" style="width:100%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-1 items-center">
+                                            <span class="w-3 h-3 bg-[#FFA74F] rounded-full"></span>
+                                            <h3>Tercapai</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Item Riwayat: Batas Gula Harian -->
+                                <div class="flex items-center gap-4 border rounded-xl p-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-lg flex bg-[#F0531C]/20 border border-[#F0531C] items-center justify-center">
+                                        <img src="assets/images/sugar.svg" alt="">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <div class="flex flex-row justify-between">
+                                            <h3 class="font-semibold">Batas gula harian</h3>
+                                            <div class="flex gap-1 items-center">
+                                                <img src="assets/images/coin.svg" alt="">
+                                                <span class="font-bold text-[#FFA74F] text-lg">+10</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-500">Mencapai target protein harian 70g</p>
+                                        <div class="flex flex-col w-full items-center gap-2 mt-1">
+                                            <div class="flex w-full justify-between"> 
+                                                <span class="text-xs font-medium text-[#F0531C]">50g/70g</span>
+                                                <p class="text-xs text-gray-400">Selasa, 12 Sept 2025</p>
+                                            </div>
+                                            <div class="w-full flex gap-1 bg-gray-200 rounded-full">
+                                                <div class="bg-[#F0531C] h-4 rounded-full w-[60%]"></div>
+                                                <div class="bg-gray-400 h-4 rounded-full w-[40%]"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-1 items-center">
+                                            <span class="w-3 h-3 bg-[#FFA74F] rounded-full"></span>
+                                            <h3 class="text-[#F0531C]">Aman</h3>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="font-semibold text-gray-400">Masukkan no telepon</p>
                         </div>
                     </div>
-                    <button class="mt-auto w-full bg-red-500 text-white font-semibold py-2.5 rounded-lg hover:bg-red-600 transition mt-6">
-                        Keluarkan
-                    </button>
                 </div>
+    
+                
+            </main>
+        </div>
+    </div>
 
-                <div class="lg:col-span-2 space-y-8">
-                    <div class="bg-white rounded-2xl shadow-sm p-6">
-                        <div class="flex justify-between items-center">
-                            <h2 class="text-xl font-bold text-gray-900">Reward Sehat Kamu</h2>
-                            <a href="#" class="text-sm font-semibold text-brand-green hover:underline">Lihat semua</a>
-                        </div>
-                        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-800 text-white p-5 rounded-xl">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-yellow-800">
-                                        <span>jus</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-bold">Free jus Boost</h3>
-                                        <p class="text-xs text-gray-300">Mall Kota Kasablanka, Lt. 2</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4 flex items-end gap-2">
-                                    <span class="text-5xl font-extrabold leading-none">60</span>
-                                    <span class="font-semibold pb-1">Poin aktif</span>
-                                </div>
-                                <p class="text-xs text-gray-400 mt-2">Berlaku sampai dengan 31/12/2025</p>
-                                <div class="flex items-center gap-2 mt-2 text-xs">
-                                    <span>60/200 Poin</span>
-                                    <div class="flex-1 bg-white/20 h-1.5 rounded-full">
-                                        <div class="bg-white h-1.5 rounded-full" style="width: 30%;"></div>
-                                    </div>
-                                    <span>30%</span>
-                                </div>
-                            </div>
-                             <div class="bg-brand-orange text-white p-5 rounded-xl">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center font-bold text-brand-orange">
-                                        <span class="text-3xl">gi</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-bold">Greenly Salad</h3>
-                                        <p class="text-xs text-gray-100">Jl. Jenderal Sudirman No. 08</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4 flex items-end gap-2">
-                                    <span class="text-5xl font-extrabold leading-none">60</span>
-                                    <span class="font-semibold pb-1">Poin aktif</span>
-                                </div>
-                                <p class="text-xs text-gray-200 mt-2">Berlaku sampai dengan 31/12/2025</p>
-                                <div class="flex items-center gap-2 mt-2 text-xs">
-                                    <span>60/60 Poin</span>
-                                    <div class="flex-1 bg-white/20 h-1.5 rounded-full">
-                                        <div class="bg-white h-1.5 rounded-full" style="width: 100%;"></div>
-                                    </div>
-                                    <button class="bg-white text-brand-orange font-bold px-3 py-0.5 rounded-full text-xs">Klaim</button>
-                                </div>
+            <!-- Footer -->
+        <footer class="text-white"> 
+            <div class="bg-[#1A3A31] px-6 py-8 md:px-12">
+                        <div class="flex items-center justify-between flex-row mb-3">
+                            <h2 class="text-xl md:text-3xl font-bold">Newsletter kami</h2>
+                            <div class="flex-shrink-0">
+                                <a href="#" class="inline-block border-2 border-[#F8A531] text-[#F8A531] font-semibold rounded-full px-8 py-3 transition-colors duration-300 hover:bg-[#F8A531] hover:text-[#1A3A31]">
+                                    Gabung Mitra
+                                </a>
                             </div>
                         </div>
+                        <p class="text-gray-300 mt-1 text-left">Dari Sehat Raih Sejahtera. Yuk, dapatkan tips sehat bersama Sehatera!</p>
+            </div>
+
+            <div class="footer-bg px-6 py-16 md:px-12">
+                <div class="container mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                        <div>
+                            <a href="#" class="flex items-center gap-3 mb-4">
+                                <img src="/assets/images/sehatera-footer.svg" class="h-10 md:h-20" alt="">
+                            </a>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Sehatera hadir untuk mendukung pola makan sehat masyarakat Indonesia dengan solusi gizi cerdas.
+                            </p>
+                            <div class="flex items-center gap-5 mt-6">
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8.56,5.19 6.88,5.19C5.19,5.19 5.19,6 5.19,6.88A1.68,1.68 0 0,0 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" /></svg></a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Sehatera</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Makanan</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Rekomendasi Gizi</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Ibu Hamil</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Reward Bergizi</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Kontak Kami</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Kontak Kami</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
+                                    <span class="text-gray-300">sehatera@gmail.com</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+                                    <span class="text-gray-300">+62 877 2513 2481</span>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-                    <div class="bg-white rounded-2xl shadow-sm p-6">
-                        <div class="flex justify-between items-center">
-                             <h2 class="text-xl font-bold text-gray-900">Riwayat Pencapaian</h2>
-                            <a href="#" class="text-sm font-semibold text-brand-green hover:underline">Semua riwayat</a>
-                        </div>
-                        <div class="mt-4 space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-2xl">💪</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <h3 class="font-semibold">Protein Harian</h3>
-                                    <p class="text-xs text-gray-500">Mencapai target protein harian 70g</p>
-                                    <div class="flex items-center gap-2 mt-1">
-                                        <div class="flex-1 bg-gray-200 h-1.5 rounded-full"><div class="bg-brand-green h-1.5 rounded-full" style="width:100%"></div></div>
-                                        <span class="text-xs font-medium">71g/70g</span>
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 text-right">
-                                    <span class="font-bold text-brand-green text-lg">+20</span>
-                                    <p class="text-xs text-gray-400">Senin, 11 Sept 2025</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-2xl">🍬</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <h3 class="font-semibold">Batas Gula Harian</h3>
-                                    <p class="text-xs text-gray-500">Kurangi konsumsi gula hingga batas harian 70g</p>
-                                    <div class="flex items-center gap-2 mt-1">
-                                        <div class="flex-1 bg-gray-200 h-1.5 rounded-full"><div class="bg-brand-orange h-1.5 rounded-full" style="width:85%"></div></div>
-                                        <span class="text-xs font-medium">50g/70g</span>
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 text-right">
-                                    <span class="font-bold text-brand-orange text-lg">+10</span>
-                                    <p class="text-xs text-gray-400">Selasa, 12 Sept 2025</p>
-                                </div>
-                            </div>
-                        </div>
+
+                    <hr class="border-white my-10">
+                    <div class="text-center text-sm">
+                        &copy; 2025 Sehatera. All rights reserved.
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </footer>
+    <script>
+    // Sidebar mobile toggle
+    const btnSidebar = document.getElementById('btn-sidebar');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.remove('-translate-x-full');
+        sidebarOverlay.classList.remove('hidden');
+    }
+    function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+    }
+    btnSidebar && btnSidebar.addEventListener('click', openSidebar);
+    sidebarOverlay && sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on desktop resize
+    window.addEventListener('resize', () => {
+        if(window.innerWidth >= 1024) {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        } else {
+            sidebar.classList.add('-translate-x-full');
+        }
+    });
+</script>
 </body>
 </html>
