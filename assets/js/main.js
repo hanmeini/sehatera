@@ -1,49 +1,72 @@
 $(document).ready(function() {
 
     // ===============================================
-    // ==         NAVBAR & MENU LOGIC             ==
+    // ==        LOGIKA NAVIGASI (GLOBAL)           ==
     // ===============================================
-    const menuBtn = $('#menu-btn');
-    const menu = $('#menu');
+    
+    // --- Sidebar Drawer (Mobile) ---
+    const btnSidebar = $('#btn-sidebar');
+    const sidebar = $('#sidebar');
+    const sidebarOverlay = $('#sidebar-overlay');
+    
+    if (btnSidebar.length) {
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            sidebar.removeClass('-translate-x-full');
+            sidebarOverlay.removeClass('hidden');
+        }
+        // Fungsi untuk menutup sidebar
+        function closeSidebar() {
+            sidebar.addClass('-translate-x-full');
+            sidebarOverlay.addClass('hidden');
+        }
+
+        btnSidebar.on('click', openSidebar);
+        sidebarOverlay.on('click', closeSidebar);
+    }
+    
+    // --- Dropdown/Akordeon Layanan (Desktop & Mobile) ---
     const layananBtn = $('#layanan-btn');
     const layananMenu = $('#layanan-menu');
+    const mobileLayananBtn = $('#mobile-layanan-btn');
+    const mobileLayananMenu = $('#mobile-layanan-menu');
 
-    // Cek jika tombol menu ada di halaman ini
-    if (menuBtn.length) {
-        // Hamburger menu toggle
-        menuBtn.on('click', function() {
-            menu.toggleClass('hidden flex');
-        });
-    }
-
-    // Cek jika tombol layanan ada di halaman ini
+    // Logika untuk dropdown desktop
     if (layananBtn.length) {
-        // Dropdown layanan toggle
-        layananBtn.on('click', function() {
+        layananBtn.on('click', function(e) {
+            e.stopPropagation(); // Mencegah klik menyebar ke document
             layananMenu.toggleClass('hidden');
+            $(this).find('svg').toggleClass('rotate-180');
         });
 
-        // Klik di luar dropdown untuk menutupnya
+        // Sembunyikan dropdown jika klik di luar
         $(document).on('click', function(event) {
             if (!layananBtn.is(event.target) && layananBtn.has(event.target).length === 0 &&
                 !layananMenu.is(event.target) && layananMenu.has(event.target).length === 0) {
                 layananMenu.addClass('hidden');
+                layananBtn.find('svg').removeClass('rotate-180');
             }
         });
     }
-
-
-    // ===============================================
-    // ==           SLIDER TESTIMONI              ==
-    // ===============================================
-    const testimonialSlides = $('.testimonial-slide');
     
-    // Cek jika slider testimoni ada di halaman ini
-    if (testimonialSlides.length > 0) {
+    // Logika untuk akordeon di dalam sidebar mobile
+    if (mobileLayananBtn.length) {
+        mobileLayananBtn.on('click', function() {
+            mobileLayananMenu.slideToggle(); // Animasi buka/tutup
+            $(this).find('svg').toggleClass('rotate-180'); // Animasi panah
+        });
+    }
+
+    // ===============================================
+    // ==           SLIDER TESTIMONI                ==
+    // ===============================================
+    const testimonialSlider = $('#testimonial-slider');
+    
+    if (testimonialSlider.length) {
         let currentTestimonial = 0;
+        const testimonialSlides = testimonialSlider.find('.testimonial-slide');
         const testimonialCount = testimonialSlides.length;
 
-        // Tampilkan slide pertama saja
         testimonialSlides.hide().eq(currentTestimonial).show();
 
         function nextTestimonial() {
@@ -53,24 +76,22 @@ $(document).ready(function() {
             });
         }
         
-        // Atur interval slider
         setInterval(nextTestimonial, 5000);
     }
 
 
     // ===============================================
-    // ==             SLIDER LOGIN                  ==
+    // ==      SLIDER HALAMAN LOGIN/DAFTAR          ==
     // ===============================================
     const imageSlider = $('#image-slider');
 
-    // Cek jika slider login ada di halaman ini
     if (imageSlider.length) {
         let currentSlide = 0;
         const slides = imageSlider.find('.slide-item');
         const dots = imageSlider.find('.slide-dot');
         const slideCount = slides.length;
         const sliderTitle = imageSlider.find('h1');
-        const sliderSubtitle = imageSlider.find('p:first-of-type'); // Memilih <p> pertama
+        const sliderSubtitle = imageSlider.find('p:first-of-type');
         const slideTexts = [
             {
                 title: "Dari Sehat Raih Sejahtera",
@@ -87,15 +108,12 @@ $(document).ready(function() {
         ];
 
         function showSlide(n) {
-            // Ganti gambar
             slides.removeClass('opacity-100').addClass('opacity-0');
             slides.eq(n).removeClass('opacity-0').addClass('opacity-100');
             
-            // Ganti dot aktif
             dots.removeClass('bg-white').addClass('bg-white/50');
             dots.eq(n).removeClass('bg-white/50').addClass('bg-white');
 
-            // Ganti teks dengan efek fade
             sliderTitle.fadeTo(300, 0, function() {
                 $(this).text(slideTexts[n].title).fadeTo(300, 1);
             });
@@ -111,7 +129,6 @@ $(document).ready(function() {
             showSlide(next);
         }
 
-        // Klik pada dot
         dots.on('click', function() {
             const index = $(this).index();
             if (index !== currentSlide) {
@@ -119,54 +136,93 @@ $(document).ready(function() {
             }
         });
 
-        // Atur interval slider otomatis
-        let slideInterval = setInterval(nextSlide, 5000); // Interval 5 detik
-
-        // Jeda slider saat kursor mouse di atasnya
+        let slideInterval = setInterval(nextSlide, 5000);
         imageSlider.on('mouseenter', () => clearInterval(slideInterval));
-        
-        // Lanjutkan slider saat kursor mouse pergi
         imageSlider.on('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
         
-        // Tampilkan slide pertama saat halaman dimuat
         showSlide(0);
     }
 
 
+    // UI Daftar
+    const authLink = $('#auth-link');
+    const nameInputContainer = $('#name-input-container');
+
+    if (authLink.length) {
+        let isLoginPage = true; 
+
+        authLink.on('click', function(e) {
+            e.preventDefault();
+            const pageTitle = $('#page-title');
+            const submitButton = $('#submit-button');
+            const authTextInfo = $('#auth-text-info');
+
+            if (isLoginPage) {
+                pageTitle.text('Gabung Bersama Kami');
+                nameInputContainer.slideDown();
+                submitButton.text('Daftar');
+                authTextInfo.text('Sudah punya akun?');
+                $(this).text('Masuk');
+                isLoginPage = false;
+            } else {
+                pageTitle.text('Masuk ke Sehatera');
+                nameInputContainer.slideUp();
+                submitButton.text('Masuk');
+                authTextInfo.text('Belum punya akun?');
+                $(this).text('Daftar');
+                isLoginPage = true;
+            }
+        });
+    }
+
 
     // ===============================================
-// ==     LOGIN/REGISTER UI TOGGLE        ==
-// ===============================================
-const authLink = $('#auth-link');
+    // ==        SLIDER LOGO MITRA KAMI             ==
+    // ===============================================
+    const mitraSlider = $('#mitra-logo');
 
-// Cek jika link toggle ada di halaman ini
-if (authLink.length) {
-    // Simpan status halaman saat ini (true = halaman login)
-    let isLoginPage = false; 
+    if (mitraSlider.length) {
+        const mitraLogos = [
+            { src: '/assets/images/kemenkes.svg', alt: 'Logo Kemenkes' },
+            { src: '/assets/images/bpom.svg', alt: 'Logo Badan POM' },
+            { src: '/assets/images/badanGizi.svg', alt: 'Logo Badan Gizi Nasional' },
+            { src: '/assets/images/halodoc.svg', alt: 'Logo Halodoc' },
+            { src: '/assets/images/gain.svg', alt: 'Logo GAIN' },
+            { src: '/assets/images/gojek.svg', alt: 'Logo Gojek' }
+        ];
 
-    authLink.on('click', function(e) {
-        e.preventDefault(); // Mencegah link berpindah halaman
+        let currentMitraIndex = 0;
+        const prevBtn = $('#mitra-prev');
+        const nextBtn = $('#mitra-next');
 
-        // Ambil semua elemen yang akan diubah
-        const pageTitle = $('#page-title');
-        const submitButton = $('#submit-button');
-        const authTextInfo = $('#auth-text-info');
+        function updateMitraSlide() {
+            // Update gambar dan alt text
+            mitraSlider.attr('src', mitraLogos[currentMitraIndex].src);
+            mitraSlider.attr('alt', mitraLogos[currentMitraIndex].alt);
 
-        if (isLoginPage) {
-            // --- Ubah UI ke Mode DAFTAR ---
-            pageTitle.text('Gabung Bersama Kami');
-            submitButton.text('Daftar');
-            authTextInfo.text('Sudah punya akun?');
-            $(this).text('Masuk');
-            isLoginPage = false;
-        } else {
-            // --- Ubah UI ke Mode MASUK ---
-            pageTitle.text('Masuk ke Sehatera');
-            submitButton.text('Masuk');
-            authTextInfo.text('Belum punya akun?');
-            $(this).text('Daftar');
-            isLoginPage = true;
+            // Atur status tombol prev/next
+            prevBtn.prop('disabled', currentMitraIndex === 0);
+            nextBtn.prop('disabled', currentMitraIndex === mitraLogos.length - 1);
         }
-    });
-}
+
+        // Event listener untuk tombol next
+        nextBtn.on('click', function() {
+            if (currentMitraIndex < mitraLogos.length - 1) {
+                currentMitraIndex++;
+                updateMitraSlide();
+            }
+        });
+
+        // Event listener untuk tombol prev
+        prevBtn.on('click', function() {
+            if (currentMitraIndex > 0) {
+                currentMitraIndex--;
+                updateMitraSlide();
+            }
+        });
+
+        // Inisialisasi slider saat halaman dimuat
+        updateMitraSlide();
+    }
 });
+
