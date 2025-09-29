@@ -1,5 +1,26 @@
 $(document).ready(function() {
 
+    const header = $('#main-header');
+    const navContainer = $('#nav-container');
+    
+    if (header.length) {
+        $(window).on('scroll', function() {
+            const scrollPos = $(window).scrollTop();
+
+            if (scrollPos > 10) { 
+                // Jika di-scroll: ubah latar dan tambahkan class 'scrolled' untuk memicu animasi garis
+                header.addClass('bg-white shadow').removeClass('bg-#ffff ');
+                navContainer.addClass('scrolled');
+            } else {
+                // Jika kembali ke atas: kembalikan seperti semula dan hapus class 'scrolled'
+                header.removeClass('bg-white shadow').addClass('bg-#FFFF');
+                navContainer.removeClass('scrolled');
+            }
+        });
+    }
+
+
+
     // ===============================================
     // ==        LOGIKA NAVIGASI (GLOBAL)           ==
     // ===============================================

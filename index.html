@@ -21,11 +21,35 @@
             background-size: cover;
             background-position: center;
         }
+      
+         #nav-container {
+            position: relative; /* Diperlukan untuk elemen semu */
+        /* Sembunyikan border asli agar bisa digantikan */
+            border-bottom: 2px solid transparent; 
+        }
+
+        #nav-container::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; /* Posisi tepat di tempat border lama */
+            left: 50%;
+            transform: translateX(-50%); /* Trik agar animasi dari/ke tengah */
+            width: 100%; /* Lebar awal penuh */
+            height: 2px;
+            background-color: #09332C;
+            /* Transisi untuk properti lebar */
+            transition: width 0.3s ease-in-out; 
+        }
+
+        /* Class yang akan kita tambahkan via JS saat di-scroll */
+        #nav-container.scrolled::after {
+            width: 0%; /* Animasikan lebar menjadi 0% */
+        }
     </style>
 </head>
 <body class="text-gray-800 overflow-x-hidden">
-            <header class="sticky top-0 z-50 bg-[#FFFFFf] bg-opacity-80 backdrop-blur-sm">
-                <div class="container mx-auto px-6 py-2 md:border-b-2 border-[#09332C]">
+            <header id="main-header" class="sticky top-0 z-50">
+                <div id="nav-container" class="container mx-auto px-6 py-2 md:border-b-2 border-[#09332C]">
                     <nav class="md:flex hidden justify-between items-center">
                         <div class="hidden md:flex flex-1 justify-start">
                             <ul class="flex items-center gap-6 font-semibold text-gray-600">
