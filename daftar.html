@@ -95,7 +95,74 @@
                 </div>
             </div>
         </div>
+
+        <div id="loading-screen" class="fixed inset-0 bg-white backdrop-blur-md z-50 flex flex-col items-center justify-center text-center p-6 hidden">
+            <div class="relative w-48 h-48 md:w-64 md:h-64">
+                <div class="absolute inset-0 border-4 border-teal-200 border-t-teal-500 p-4 rounded-full animate-spin"></div>
+                <video
+                    src="assets/images/loading-sehatera.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    class="w-full h-full object-cover rounded-full"
+                ></video>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mt-8">Avo arahkan ke halaman berikutnya</h2>
+            <p class="text-gray-600 mt-2">Mendeteksi Mohon tunggu sebentar!</p>
+        </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="assets/js/main.js"></script>
+        <script>
+        $(document).ready(function() {
+            const form = $('form'); // Target form pendaftaran
+            const loadingScreen = $('#loading-screen');
+            const submitButton = $('#submit-button');
+
+            form.on('submit', function(e) {
+                // 1. Mencegah form submit secara default
+                e.preventDefault();
+
+                // 2. Simulasi Validasi (Pastikan field terisi)
+                const email = $('input[type="email"]').val();
+                const password = $('input[type="password"]').val();
+
+                if (!email || !password) {
+                    alert('Mohon lengkapi semua field.');
+                    return;
+                }
+
+                // 3. Tampilkan Loading Screen
+                loadingScreen.removeClass('hidden');
+
+                // Opsional: Nonaktifkan tombol untuk mencegah klik ganda
+                submitButton.prop('disabled', true); 
+
+                // 4. Simulasi proses pendaftaran (misalnya 3 detik)
+                setTimeout(function() {
+                    // 5. Setelah simulasi selesai, arahkan ke dashboard.html
+                    window.location.href = "dashboard.html";
+                }, 3000); // Tunda 3 detik (3000 milidetik)
+            });
+            
+            
+            // Logika Tambahan: Mengubah Tampilan antara Daftar dan Masuk
+            $('#auth-link').on('click', function(e) {
+                e.preventDefault();
+                const isRegister = $('#page-title').text().includes('Gabung');
+                
+                if (isRegister) {
+                    // Berubah ke mode MASUK
+                    $('#page-title').text('Selamat Datang Kembali');
+                    $('.text-gray-500.mt-1.mb-6.text-center').text('Masuk untuk melanjutkan perjalanan sehat Anda.');
+                    $('#submit-button').text('Masuk').removeClass('bg-[#09332C]').addClass('bg-[#09332C]');
+                    $('#auth-text-info').html('Belum punya akun? <a href="#" id="auth-link" class="text-[#09332C] font-medium hover:underline">Daftar</a>');
+                    $('#name-input-container').remove(); // Hapus field nama (asumsi tidak perlu di form masuk)
+                } else {
+                    // Berubah ke mode DAFTAR
+                    window.location.reload(); // Cara paling sederhana untuk kembali ke tampilan awal (daftar)
+                }
+            });
+        });
+    </script>
 </body>
 </html>
