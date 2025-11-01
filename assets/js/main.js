@@ -1,26 +1,5 @@
 $(document).ready(function() {
 
-    const header = $('#main-header');
-    const navContainer = $('#nav-container');
-    
-    if (header.length) {
-        $(window).on('scroll', function() {
-            const scrollPos = $(window).scrollTop();
-
-            if (scrollPos > 10) { 
-                // Jika di-scroll: ubah latar dan tambahkan class 'scrolled' untuk memicu animasi garis
-                header.addClass('bg-white shadow').removeClass('bg-#ffff ');
-                navContainer.addClass('scrolled');
-            } else {
-                // Jika kembali ke atas: kembalikan seperti semula dan hapus class 'scrolled'
-                header.removeClass('bg-white shadow').addClass('bg-#FFFF');
-                navContainer.removeClass('scrolled');
-            }
-        });
-    }
-
-
-
     // ===============================================
     // ==        LOGIKA NAVIGASI (GLOBAL)           ==
     // ===============================================
@@ -46,37 +25,6 @@ $(document).ready(function() {
         sidebarOverlay.on('click', closeSidebar);
     }
     
-    // --- Dropdown/Akordeon Layanan (Desktop & Mobile) ---
-    const layananBtn = $('#layanan-btn');
-    const layananMenu = $('#layanan-menu');
-    const mobileLayananBtn = $('#mobile-layanan-btn');
-    const mobileLayananMenu = $('#mobile-layanan-menu');
-
-    // Logika untuk dropdown desktop
-    if (layananBtn.length) {
-        layananBtn.on('click', function(e) {
-            e.stopPropagation(); // Mencegah klik menyebar ke document
-            layananMenu.toggleClass('hidden');
-            $(this).find('svg').toggleClass('rotate-180');
-        });
-
-        // Sembunyikan dropdown jika klik di luar
-        $(document).on('click', function(event) {
-            if (!layananBtn.is(event.target) && layananBtn.has(event.target).length === 0 &&
-                !layananMenu.is(event.target) && layananMenu.has(event.target).length === 0) {
-                layananMenu.addClass('hidden');
-                layananBtn.find('svg').removeClass('rotate-180');
-            }
-        });
-    }
-    
-    // Logika untuk akordeon di dalam sidebar mobile
-    if (mobileLayananBtn.length) {
-        mobileLayananBtn.on('click', function() {
-            mobileLayananMenu.slideToggle(); // Animasi buka/tutup
-            $(this).find('svg').toggleClass('rotate-180'); // Animasi panah
-        });
-    }
 
     // ===============================================
     // ==           SLIDER TESTIMONI                ==
@@ -246,4 +194,3 @@ $(document).ready(function() {
         updateMitraSlide();
     }
 });
-

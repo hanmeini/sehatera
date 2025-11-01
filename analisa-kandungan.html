@@ -1,694 +1,1525 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Analisis Ibu Hamil</title>
-    <link rel="shortcut icon" href="/assets/images/logo-sehatera.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="/assets/images/logo-sehatera.png"
+      type="image/x-icon"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff; /* bg-gray-50 */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff; /* bg-gray-50 */
+      }
+      /* Custom brand colors */
+      .brand-red-light {
+        background-color: #fee2e2;
+      } /* red-100 */
+      .text-brand-red {
+        color: #dc2626;
+      } /* red-600 */
+      .brand-orange-light {
+        background-color: #ffedd5;
+      } /* orange-100 */
+      .text-brand-orange {
+        color: #f97316;
+      } /* orange-500 */
+      .brand-teal-light {
+        background-color: #f0fdfa;
+      } /* teal-50 */
+      .text-brand-teal {
+        color: #0d9488;
+      } /* teal-600 */
+      .footer-bg {
+        background-image: linear-gradient(
+            rgba(39, 61, 51, 0.9),
+            rgba(39, 61, 51, 0.9)
+          ),
+          url("/assets/images/footer.png");
+        background-size: cover;
+        background-position: center;
+      }
+        #layanan-menu {
+            transform-origin: top center;
         }
-        /* Custom brand colors */
-        .brand-red-light { background-color: #FEE2E2; } /* red-100 */
-        .text-brand-red { color: #DC2626; } /* red-600 */
-        .brand-orange-light { background-color: #FFEDD5; } /* orange-100 */
-        .text-brand-orange { color: #F97316; } /* orange-500 */
-        .brand-teal-light { background-color: #F0FDFA; } /* teal-50 */
-        .text-brand-teal { color: #0D9488; } /* teal-600 */
-        .footer-bg{
-            background-image: 
-                linear-gradient(rgba(39, 61, 51, 0.9), rgba(39, 61, 51, 0.9)), 
-                url('/assets/images/footer.png');
-            background-size: cover;
-            background-position: center;
+        #mobile-navbar {
+            transition: border-color 300ms ease;
         }
     </style>
-</head>
-<body class="text-gray-800 flex flex-col min-h-screen">
+  </head>
+  <body class="text-gray-800 flex flex-col min-h-screen">
     <!-- Sidebar Responsive -->
     <!-- Mobile Navbar -->
-    <nav class="lg:hidden flex fixed w-full items-center justify-between px-4 py-2 border-b bg-white">
-        <!-- Hamburger -->
-        <button id="btn-sidebar" class="text-[#09332C] focus:outline-none">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
-        <!-- Logo Center -->
-        <div class="flex flex-col items-center">
-            <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-7 w-7">
-            <span class="text-lg font-bold text-[#09332C]">sehatera</span>
-        </div>
-        <!-- Placeholder for spacing -->
-        <div class="w-7"></div>
+    <nav
+      id="nav-container"
+      class="lg:hidden flex fixed w-full items-center justify-between px-4 py-2 border-b bg-white"
+    >
+      <!-- Hamburger -->
+      <button id="btn-sidebar" class="text-[#09332C] focus:outline-none">
+        <svg
+          class="w-7 h-7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+      <!-- Logo Center -->
+      <div class="flex flex-col items-center">
+        <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-7 w-7" />
+        <span class="text-lg font-bold text-[#09332C]">sehatera</span>
+      </div>
+      <!-- Placeholder for spacing -->
+      <div class="w-7"></div>
     </nav>
 
     <div class="flex flex-1">
-        <!-- Sidebar Overlay (Mobile) -->
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
-        <!-- Sidebar Drawer -->
-        <aside id="sidebar"
-            class="fixed top-0 left-0 h-full w-64 bg-white z-50 border-r p-6 flex flex-col transition-transform duration-200 -translate-x-full lg:translate-x-0 lg:static lg:flex lg:w-64 lg:z-0 lg:p-6">
-            <a href="index.html" class="flex items-center gap-3 mb-6">
-                <img src="assets/images/logo.svg" alt="Sehatera Logo" class="h-8 w-8">
-                <span class="text-xl font-bold text-[#09332C]">sehatera</span>
-            </a>
-            <hr class="my-2 border-gray-200">
-            <nav class="flex-1">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="/dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
-                            <span><img src="assets/images/home.svg" alt=""></span>
-                            Beranda
-                        </a>
-                    </li>
-                    <li class="relative">
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-bold bg-gray-100">
-                            <span><img src="assets/images/puzzle.svg" alt=""></span>
-                            Layanan
-                        </a>
-                        <ul class="mt-2 pl-5 space-y-2 border-l-2 border-[#09332C] ml-2">
-                            <li>
-                                <a href="/analisa-makanan.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Analisis Makanan</a>
-                            </li>
-                            <li>
-                                <a href="/dashboard.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Rekomendasi Gizi</a>
-                            </li>
-                            <li>
-                                <a href="analisa-kandungan.html" class="block text-[#09332C] font-semibold py-1 pl-4">Analisis Kandungan</a>
-                            </li>
-                            <li>
-                                <a href="profile.html" class="block text-[#09332C] hover:font-bold py-1 pl-4">Reward Bergizi</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/profile.html" class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100">
-                            <span><img src="assets/images/kontak.svg" alt=""></span>
-                            Profile
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+      <!-- Sidebar Overlay (Mobile) -->
+      <div
+        id="sidebar-overlay"
+        class="fixed inset-0 bg-black/30 z-40 hidden"
+      ></div>
+      <!-- Sidebar Drawer -->
+      <aside
+        id="sidebar"
+        class="fixed top-0 left-0 h-full w-64 bg-white z-50 border-r p-6 flex flex-col transition-transform duration-200 -translate-x-full lg:translate-x-0 lg:static lg:flex lg:w-64 lg:z-0 lg:p-6"
+      >
+        <a href="index.html" class="flex items-center gap-3 mb-6">
+          <img
+            src="assets/images/logo.svg"
+            alt="Sehatera Logo"
+            class="h-8 w-8"
+          />
+          <span class="text-xl font-bold text-[#09332C]">sehatera</span>
+        </a>
+        <hr class="my-2 border-gray-200" />
+        <nav class="flex-1">
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/dashboard.html"
+                class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100"
+              >
+                <span><img src="assets/images/home.svg" alt="" /></span>
+                Beranda
+              </a>
+            </li>
+            <li class="relative">
+              <a
+                href="#"
+                class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-bold bg-gray-100"
+              >
+                <span><img src="assets/images/puzzle.svg" alt="" /></span>
+                Layanan
+              </a>
+              <ul class="mt-2 pl-5 space-y-2 border-l-2 border-[#09332C] ml-2">
+                <li>
+                  <a
+                    href="/analisa-makanan.html"
+                    class="block text-[#09332C] hover:font-bold py-1 pl-4"
+                    >Analisis Makanan</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/dashboard.html"
+                    class="block text-[#09332C] hover:font-bold py-1 pl-4"
+                    >Rekomendasi Gizi</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="analisa-kandungan.html"
+                    class="block text-[#09332C] font-semibold py-1 pl-4"
+                    >Analisis Kandungan</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="profile.html"
+                    class="block text-[#09332C] hover:font-bold py-1 pl-4"
+                    >Reward Bergizi</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="/profile.html"
+                class="flex items-center gap-3 p-3 rounded-lg text-[#09332C] font-semibold hover:bg-gray-100"
+              >
+                <span><img src="assets/images/kontak.svg" alt="" /></span>
+                Profile
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-        <main class="flex-1 p-6 md:p-8 overflow-y-auto pt-20 md:pt-10">
-            <header class="flex items-center gap-4">
-                <div class="w-12 h-12 p-3 flex-shrink-0 bg-[#09332C]/30 text-red-600 rounded-lg flex items-center justify-center font-bold text-2xl">
-                    <img src="assets/images/hamilhijau.svg" alt="">
-                </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-[#09332C]">Analisis Ibu Hamil</h1>
-                    <p class="text-gray-500">Temani perjalanan kehamilanmu dengan pemantauan gizi yang tepat</p>
-                </div>
-            </header>
+      <main class="flex-1 p-6 md:p-8 overflow-y-auto pt-20 md:pt-10">
+        <header class="flex items-center gap-4">
+          <div
+            class="w-12 h-12 p-3 flex-shrink-0 bg-[#09332C]/30 text-red-600 rounded-lg flex items-center justify-center font-bold text-2xl"
+          >
+            <img src="assets/images/hamilhijau.svg" alt="" />
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-[#09332C]">
+              Analisis Ibu Hamil
+            </h1>
+            <p class="text-gray-500">
+              Temani perjalanan kehamilanmu dengan pemantauan gizi yang tepat
+            </p>
+          </div>
+        </header>
 
-            <section class=" md:flex hidden mt-6 flex flex-row justify-between gap-6 w-full">
-                <div class="w-full bg-[#F0531C]/30 border border-[#F0531C] text-[#F0531C] p-8 flex flex-col gap-8 rounded-xl">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/calendar.svg" alt="">
-                        <p class="text-sm font-semibold">Usia Kehamilan</p>
-                    </div>
-                    <p class="text-3xl font-bold mt-1">17 Minggu</p>
-                </div>
-                <div class="w-full bg-[#FFA74F]/30 border border-[#FFA74F] text-[#FFA74F] p-8 flex flex-col gap-8 rounded-xl">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/baby.svg" alt="">
-                        <p class="text-sm font-semibold">Trimester</p>
-                    </div>
-                    <p class="text-3xl font-bold mt-1">2</p>
-                </div>
-                <div class="w-full bg-[#09332C]/30 border border-[#09332C] text-[#09332C] p-8 flex flex-col gap-8 rounded-xl">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/love.svg" alt="">
-                        <p class="text-sm font-semibold">Status Gizi</p>
-                    </div>
-                    <p class="text-3xl font-bold mt-1">Baik</p>
-                </div>
-            </section>
+        <section
+          class="md:flex hidden mt-6 flex flex-row justify-between gap-6 w-full"
+        >
+          <div
+            class="w-full bg-[#F0531C]/30 border border-[#F0531C] text-[#F0531C] p-8 flex flex-col gap-8 rounded-xl"
+          >
+            <div class="flex items-center gap-3">
+              <img src="assets/images/calendar.svg" alt="" />
+              <p class="text-sm font-semibold">Usia Kehamilan</p>
+            </div>
+            <p class="text-3xl font-bold mt-1">17 Minggu</p>
+          </div>
+          <div
+            class="w-full bg-[#FFA74F]/30 border border-[#FFA74F] text-[#FFA74F] p-8 flex flex-col gap-8 rounded-xl"
+          >
+            <div class="flex items-center gap-3">
+              <img src="assets/images/baby.svg" alt="" />
+              <p class="text-sm font-semibold">Trimester</p>
+            </div>
+            <p class="text-3xl font-bold mt-1">2</p>
+          </div>
+          <div
+            class="w-full bg-[#09332C]/30 border border-[#09332C] text-[#09332C] p-8 flex flex-col gap-8 rounded-xl"
+          >
+            <div class="flex items-center gap-3">
+              <img src="assets/images/love.svg" alt="" />
+              <p class="text-sm font-semibold">Status Gizi</p>
+            </div>
+            <p class="text-3xl font-bold mt-1">Baik</p>
+          </div>
+        </section>
 
-            <!-- Slider Status Kehamilan (Mobile Only) -->
-            <div class="block md:hidden mt-6">
-                <div id="slider-status" class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-2">
-                    <div class="min-w-[220px] snap-center bg-[#F0531C]/30 border border-[#F0531C] text-[#F0531C] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/calendar.svg" alt="">
-                        <p class="text-sm font-semibold">Usia Kehamilan</p>
-                    </div>
-                    <p class="text-2xl font-bold mt-1">17 Minggu</p>
-                    </div>
-                    <div class="min-w-[220px] snap-center bg-[#FFA74F]/30 border border-[#FFA74F] text-[#FFA74F] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/baby.svg" alt="">
-                        <p class="text-sm font-semibold">Trimester</p>
-                    </div>
-                    <p class="text-2xl font-bold mt-1">2</p>
-                    </div>
-                    <div class="min-w-[220px] snap-center bg-[#09332C]/30 border border-[#09332C] text-[#09332C] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0">
-                    <div class="flex items-center gap-3">
-                        <img src="assets/images/love.svg" alt="">
-                        <p class="text-sm font-semibold">Status Gizi</p>
-                    </div>
-                    <p class="text-2xl font-bold mt-1">Baik</p>
-                    </div>
-                </div>
+        <!-- Slider Status Kehamilan (Mobile Only) -->
+        <div class="block md:hidden mt-6">
+          <div
+            id="slider-status"
+            class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-2"
+          >
+            <div
+              class="min-w-[220px] snap-center bg-[#F0531C]/30 border border-[#F0531C] text-[#F0531C] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0"
+            >
+              <div class="flex items-center gap-3">
+                <img src="assets/images/calendar.svg" alt="" />
+                <p class="text-sm font-semibold">Usia Kehamilan</p>
+              </div>
+              <p class="text-2xl font-bold mt-1">17 Minggu</p>
+            </div>
+            <div
+              class="min-w-[220px] snap-center bg-[#FFA74F]/30 border border-[#FFA74F] text-[#FFA74F] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0"
+            >
+              <div class="flex items-center gap-3">
+                <img src="assets/images/baby.svg" alt="" />
+                <p class="text-sm font-semibold">Trimester</p>
+              </div>
+              <p class="text-2xl font-bold mt-1">2</p>
+            </div>
+            <div
+              class="min-w-[220px] snap-center bg-[#09332C]/30 border border-[#09332C] text-[#09332C] p-6 flex flex-col gap-2 rounded-xl flex-shrink-0"
+            >
+              <div class="flex items-center gap-3">
+                <img src="assets/images/love.svg" alt="" />
+                <p class="text-sm font-semibold">Status Gizi</p>
+              </div>
+              <p class="text-2xl font-bold mt-1">Baik</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-400 h-[1px] w-full my-10"></div>
+
+        <div class="flex justify-center my-4 md:my-8">
+          <div
+            class="inline-flex rounded-full bg-white border border-gray-300 p-[2px]"
+          >
+            <button
+              class="px-6 py-2 rounded-full font-semibold text-white bg-[#09332C] transition-colors focus:outline-none"
+              id="btn-jurnal"
+            >
+              Jurnal
+            </button>
+            <button
+              class="px-6 py-2 rounded-full font-semibold text-[#09332C] bg-transparent hover:bg-[#09332C]/90 transition-colors focus:outline-none"
+              id="btn-gizi"
+            >
+              Gizi
+            </button>
+          </div>
+        </div>
+        <section
+          id="section-jurnal"
+          class="mt-6 w-full flex md:flex-row flex-col gap-6"
+        >
+          <!-- Jurnal Perasaan Ibu -->
+          <div
+            class="border rounded-2xl bg-white md:p-6 shadow-sm flex-1 md:max-w-[60%]"
+          >
+            <h2 class="font-bold text-lg flex items-center gap-2">
+              <span><img src="assets/images/wink.svg" alt="" /></span> Jurnal
+              Perasaan Ibu
+            </h2>
+            <div
+              class="mt-4 flex justify-between text-center"
+              id="mood-buttons"
+            >
+              <button
+                class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800 text-gray-700"
+              >
+                <span class="text-3xl">
+                  <img
+                    src="assets/images/senang.svg"
+                    data-active="assets/images/senang-active.svg"
+                    data-default="assets/images/senang.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="text-xs font-semibold">Senang</span>
+              </button>
+
+              <button
+                class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800 text-gray-700"
+              >
+                <span class="text-3xl">
+                  <img
+                    src="assets/images/biasa.svg"
+                    data-active="assets/images/biasa-active.svg"
+                    data-default="assets/images/biasa.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="text-xs font-semibold">Biasa</span>
+              </button>
+
+              <button
+                class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800 text-gray-700"
+              >
+                <span class="text-3xl">
+                  <img
+                    src="assets/images/marah.svg"
+                    data-active="assets/images/marah-active.svg"
+                    data-default="assets/images/marah.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="text-xs font-semibold">Marah</span>
+              </button>
+
+              <button
+                class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800 text-gray-700"
+              >
+                <span class="text-3xl">
+                  <img
+                    src="assets/images/sedih.svg"
+                    data-active="assets/images/sedih-active.svg"
+                    data-default="assets/images/sedih.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="text-xs font-semibold">Sedih</span>
+              </button>
             </div>
 
-            <div class="bg-gray-400 h-[1px] w-full my-10"></div>
-
-            <div class="flex justify-center my-4 md:my-8">
-                <div class="inline-flex rounded-full bg-white border border-gray-300 p-[2px]">
-                    <button class="px-6 py-2 rounded-full font-semibold text-white bg-[#09332C] transition-colors focus:outline-none" id="btn-jurnal">
-                        Jurnal
-                    </button>
-                    <button class="px-6 py-2 rounded-full font-semibold text-[#09332C] bg-transparent hover:bg-[#09332C]/90 transition-colors focus:outline-none" id="btn-gizi">
-                        Gizi
-                    </button>
-                </div>
+            <p class="text-sm text-[#09332C] mt-10 mb-10">
+              Apa gejala yang dirasakan?
+            </p>
+            <div class="flex flex-wrap gap-2 mt-2" id="gejala-buttons">
+              <button
+                class="text-sm bg-white text-[#09332C] border border-[#09332C] px-4 py-2 rounded-full transition"
+              >
+                Sakit punggung
+              </button>
+              <button
+                class="text-sm bg-white text-[#09332C] border border-[#09332C] px-4 py-2 rounded-full transition"
+              >
+                Mual
+              </button>
+              <button
+                class="text-sm bg-white text-[#09332C] border border-[#09332C] px-4 py-2 rounded-full transition"
+              >
+                Pusing
+              </button>
+              <button
+                class="text-sm bg-white text-[#09332C] border border-[#09332C] px-4 py-2 rounded-full transition"
+              >
+                Kram
+              </button>
             </div>
-            <section id="section-jurnal" class="mt-6 w-full flex md:flex-row flex-col gap-6">
-                <!-- Jurnal Perasaan Ibu -->
-                <div class="border rounded-2xl bg-white md:p-6 shadow-sm flex-1 md:max-w-[60%]">
-                    <h2 class="font-bold text-lg flex items-center gap-2"><span><img src="assets/images/wink.svg" alt=""></span> Jurnal Perasaan Ibu</h2>
-                    <div class="mt-4 flex justify-between text-center">
-                        <button class="flex flex-col items-center gap-1 p-2 rounded-lg border-2 border-gray-800"> <span class="text-3xl"><img src="assets/images/senang.svg" alt=""></span> <span class="text-xs font-semibold">Senang</span> </button>
-                        <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl"><img src="assets/images/marah.svg" alt=""></span> <span class="text-xs font-semibold">Biasa</span> </button>
-                        <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl"><img src="assets/images/marah.svg" alt=""></span> <span class="text-xs font-semibold">Marah</span> </button>
-                        <button class="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:bg-gray-100"> <span class="text-3xl"><img src="assets/images/sedih.svg" alt=""></span> <span class="text-xs font-semibold">Sedih</span> </button>
-                    </div>
-                    <p class="text-sm text-[#09332C] mt-10 mb-10">Apa gejala yang dirasakan?</p>
-                    <div class="flex flex-wrap gap-2 mt-2">
-                        <button class="text-sm bg-[#09332C] text-white px-4 py-2 rounded-full">Sakit punggung</button>
-                        <button class="text-sm  bg-[#09332C]  text-white px-4 py-2 rounded-full hover:bg-[#09332C]/90 transform trasntition">Mual</button>
-                        <button class="text-sm bg-[#09332C]  text-white px-4 py-2 rounded-full hover:bg-[#09332C]/90 transform trasntition">Pusing</button>
-                        <button class="text-sm  bg-[#09332C] text-white px-4 py-2 rounded-full hover:bg-[#09332C]/90 transform trasntition">Kram</button>
-                    </div>
-                </div>
-                <!-- Trimester & Minggu -->
-                <div class="bg-white p-6 rounded-2xl md:max-w-[40%] w-full justify-end items-end shadow-sm">
-                    <div class="flex justify-between items-end mb-4">
-                        <select id="trimesterSelect" class="text-sm font-semibold border border-gray-300 bg-[#09332C] rounded-md p-2 text-white focus:ring-0">
-                            <option value="1">Trimester 1</option>
-                            <option value="2">Trimester 2</option>
-                            <option value="3">Trimester 3</option>
-                        </select>
-                        <h2 class="text-gray-400">Minggu ke</h2>
-                    </div>
-                    <div id="mingguGrid" class="grid grid-cols-4 gap-1 text-center text-sm mt-3"></div>
-                </div>
-            </section>
+          </div>
+          <!-- Trimester & Minggu -->
+          <div
+            class="bg-white p-6 rounded-2xl md:max-w-[40%] w-full justify-end items-end shadow-sm"
+          >
+            <div class="flex justify-between items-end mb-4">
+              <select
+                id="trimesterSelect"
+                class="text-sm font-semibold border border-gray-300 bg-[#09332C] rounded-md p-2 text-white focus:ring-0"
+              >
+                <option value="1">Trimester 1</option>
+                <option value="2">Trimester 2</option>
+                <option value="3">Trimester 3</option>
+              </select>
+              <h2 class="text-gray-400">Minggu ke</h2>
+            </div>
+            <div
+              id="mingguGrid"
+              class="grid grid-cols-4 gap-1 text-center text-sm mt-3"
+            ></div>
+          </div>
+        </section>
 
-            <section id="section-gizi" class="mt-6 bg-white -p-20 md:p-6 rounded-2xl shadow-sm hidden ">
-                <section class="border rounded-2xl bg-white p-6 shadow-sm flex flex-col">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                        <!-- Catat Gizi Harian -->
-                        <div class="">
-                            <h2 class="font-bold text-lg flex items-center gap-2 mb-4">
-                                <span class="rounded-lg"><img src="assets/images/note.svg" alt="" class="w-10 h-10"></span>
-                                Catat Gizi Harian
-                            </h2>
-                            <div class="bg-[#FFEDE5] border-2 border-dashed rounded-xl p-4 text-center mb-4">
-                                <button class="text-[#F0531C] font-semibold px-4 py-2 rounded-lg mb-4 flex items-center gap-2">
-                                    <span class="bg-[#F0531C]/30 border border-[#F0531C] p-2 rounded-lg">
-                                        <svg class="w-5 h-5" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12.5 9.375C10.8062 9.375 9.375 10.8062 9.375 12.5C9.375 14.1937 10.8062 15.625 12.5 15.625C14.1937 15.625 15.625 14.1937 15.625 12.5C15.625 10.8062 14.1937 9.375 12.5 9.375Z" fill="#F0531C"/>
-                                            <path d="M20.8333 5.20825H18.1395L15.3197 2.38846C15.1244 2.1931 14.8595 2.08331 14.5833 2.08325H10.4166C10.1403 2.08331 9.87543 2.1931 9.68013 2.38846L6.86033 5.20825H4.16659C3.01763 5.20825 2.08325 6.14263 2.08325 7.29158V18.7499C2.08325 19.8989 3.01763 20.8333 4.16659 20.8333H20.8333C21.9822 20.8333 22.9166 19.8989 22.9166 18.7499V7.29158C22.9166 6.14263 21.9822 5.20825 20.8333 5.20825ZM12.4999 17.7083C9.677 17.7083 7.29158 15.3228 7.29158 12.4999C7.29158 9.677 9.677 7.29158 12.4999 7.29158C15.3228 7.29158 17.7083 9.677 17.7083 12.4999C17.7083 15.3228 15.3228 17.7083 12.4999 17.7083Z" fill="#F0531C"/>
-                                        </svg>
-                                    </span>
-                                        Upload Foto Makananmu
-                                </button>
-    
-                                <hr class="border-gray-300 my-4">
-    
-                                <div class="bg-white p-10 py-20 rounded-md border border-[#F0531C]/30 flex flex-col items-center justify-center">
-                                    <img src="assets/images/image-oren.svg" alt="" class="w-12 h-12 mb-2">
-                                    <p class="text-xs text-[#F0531C]">Unggah foto dengan klik atau seret</p>
-                                </div>
-                            </div>
-                            <div class="flex justify-start gap-10 mt-4 text-sm font-bold text-gray-500">
-                                <span class="flex items-center gap-1"><span class="w-5 h-5 rounded-md bg-[#FEE2E2] inline-block"></span> Rendah</span>
-                                <span class="flex items-center gap-1"><span class="w-5 h-5 rounded-md bg-[#F0FDFA] inline-block"></span> Ideal</span>
-                                <span class="flex items-center gap-1"><span class="w-5 h-5 rounded-md bg-[#F97316] inline-block"></span> Mencapai/mendekati batas</span>
-                            </div>
-                        </div>
-                        <!-- Hasil Analisis -->
-                        <div class="flex-1">
-                            <h3 class="font-bold text-lg mb-4">Hasil Analisis</h3>
-                            <div class="space-y-5">
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1"><img src="assets/images/kalori-api.svg" class="w-4 h-4"> Kalori</span>
-                                        <span>150kcal (8% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[25%] bg-[#FFA74F] h-2 rounded-full"></div>
-                                        <div class="w-[75%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1 text-[#09332C]"><img src="assets/images/protein.svg" class="w-4 h-4"> Protein</span>
-                                        <span>18g (36% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[35%] bg-[#09332C] h-2 rounded-full"></div>
-                                        <div class="w-[65%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1"><img src="assets/images/salt.svg" class="w-4 h-4"> Natrium</span>
-                                        <span>600mg (25% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[30%] bg-[#09332C] h-2 rounded-full"></div>
-                                        <div class="w-[70%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1"><img src="assets/images/asamfolat.png" class="w-4 h-4"> Asam Folat</span>
-                                        <span>350mcg (58% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[65%] bg-[#09332C] h-2 rounded-full"></div>
-                                        <div class="w-[35%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1"><img src="assets/images/zatbesi.svg" class="w-4 h-4"> Zat Besi</span>
-                                        <span>18mg (67% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[15%] bg-[#FFA74F] h-2 rounded-full"></div>
-                                        <div class="w-[85%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex gap-1 text-sm md:text-md font-semibold mb-1">
-                                        <span class="flex items-center gap-1"><img src="assets/images/kalsium.svg" class="w-4 h-4"> Kalsium</span>
-                                        <span>800mg (96% dari kebutuhan harian)</span>
-                                    </div>
-                                    <div class="w-full flex flex-row gap-1">
-                                        <div class="w-[80%] bg-[#F0531C] h-2 rounded-full"></div>
-                                        <div class="w-[20%] bg-gray-200 h-2 rounded-full"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl text-[#09332C] p-4 mt-8">
-                        <h3 class="font-bold text-lg mb-4">Ringkasan</h3>
-                        <div class="mb-2"><span class="font-semibold text-[#09332C] ">Nama:</span> Sup ayam kampung</div>
-                        <div class="mb-2"><span class="font-semibold text-[#09332C]">Kandungan Gizi:</span> Baik</div>
-                        <div class="flex md:flex-row flex-col justify-between items-center">
-                            <div class="mb-2 w-full md:w-[70%]">
-                                <span class="font-semibold text-[#09332C]">Manfaat:</span> 
-                                <span class="text-gray-700">Sangat baik untuk daya tahan tubuh, cocok untuk diet sehat dan pemulihan tubuh.</span>
-                            </div>
-                            <div class="flex gap-4 mt-4">
-                                <div>
-                                    <span class="font-semibold flex items-center gap-1 text-[#09332C]"><img src="assets/images/tips.svg" alt="" class="w-4 h-4"> Tips</span>
-                                    <p class="text-gray-600 mt-1">Kandungan serat rendah disarankan untuk menambah sayuran seperti brokoli atau wortel.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <!-- Rekap Analisis Mingguan -->
-                    <div class="mt-10">
-                        <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><img src="assets/images/chart.svg" class="w-5 h-5"> Rekap Analisis Mingguan</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            <div class="bg-white border rounded-xl p-4">
-                                <div class="flex flex-row items-center gap-2 mb-2">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#09332C] text-[#0D9488]">
-                                        <img src="assets/images/asamfolat.svg" class="w-5 h-5">
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h3 class="font-bold">Asam Folat</h3>
-                                        <div class="text-xs text-gray-500 mb-1">Minggu ke-17</div>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-gray-500 mb-3">Mencegah cacat <br> tabung saraf pada janin</p>
-                                <div class="flex flex-row  font-semibold text-sm justify-between">
-                                    <p class="text-gray-400">Progress</p>
-                                    <p class="text-[#09332C]">2.450/4.200 mcg</p>
-                                </div>
-                                <div class="w-full flex flex-row gap-1">
-                                    <div class="w-[50%] bg-[#09332C] h-3 rounded-full"></div>
-                                    <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-3 text-left">(58% dari target mingguan)</p>
-                            </div>
-                            <div class="bg-white border rounded-xl p-4">
-                                <div class="flex flex-row items-center gap-2 mb-2">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#F0531C]">
-                                        <img src="assets/images/zatbesi.svg" class="w-5 h-5">
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h3 class="font-bold">Zat Besi</h3>
-                                        <div class="text-xs text-gray-500 mb-1">Minggu ke-17</div>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-[#F0531C] mb-3">Mencegah cacat <br> tabung saraf pada janin</p>
-                                <div class="flex flex-row font-semibold text-sm justify-between">
-                                    <p class="text-gray-400">Progress</p>
-                                    <p class="text-[#09332C]">2.450/4.200 mcg</p>
-                                </div>
-                                <div class="w-full flex flex-row gap-1">
-                                    <div class="w-[50%] bg-[#F0531C] h-3 rounded-full"></div>
-                                    <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-3 text-left">(58% dari target mingguan)</p>
-                            </div>    
-                            <div class="bg-white border rounded-xl p-4">
-                                <div class="flex flex-row items-center gap-2 mb-2">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#FFA74F] text-white">
-                                        <img src="assets/images/kalsium.svg" class="w-5 h-5">
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h3 class="font-bold">Kalsium</h3>
-                                        <div class="text-xs text-gray-500 mb-1">Minggu ke-17</div>
-                                    </div>
-                                </div>
-                                <p class="text-sm mb-3 text-[#FFA74F]">Mencegah cacat <br> tabung saraf pada janin</p>
-                                <div class="flex flex-row font-semibold text-sm justify-between">
-                                    <p class="text-gray-400">Progress</p>
-                                    <p class="text-[#09332C]">2.450/4.200 mcg</p>
-                                </div>
-                                <div class="w-full flex flex-row gap-1">
-                                    <div class="w-[50%] bg-[#FFA74F] h-3 rounded-full"></div>
-                                    <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-3 text-left">(58% dari target mingguan)</p>
-                            </div>                         
-                        </div>
-                    </div>
-                    <!-- Makanan Pilihan Trimester 2 -->
-                    <div class="md:block hidden mt-10">
-                        <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><img src="assets/images/makanan.svg" class="w-5 h-5"> Makanan Pilihan Trimester 2</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            <!-- Card 1 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end">
-                                <div class="absolute inset-0 z-0">
-                                    <img src="assets/images/makanan1.png" alt="Quinoa" class="w-full h-full object-cover">
-                                </div>
-                                <!-- Overlay hitam gradient to top, lebih cerah di atas -->
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                                <!-- Kategori & kcal di atas -->
-                                <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Biji-bijian</div>
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">222 kcal/cup</div>
-                                </div>
-                                <div class="relative z-20 p-4 mt-10">
-                                    <h3 class="font-bold text-lg text-white">Quinoa</h3>
-                                    <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                        <img src="/assets/images/garpu.svg" alt="">
-                                        <span>
-                                            Protein lengkap 8g <br> Folat 78mcg
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end">
-                                <div class="absolute inset-0 z-0">
-                                    <img src="assets/images/makanan2.png" alt="Salmon" class="w-full h-full object-cover">
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                                <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Ikan</div>
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">206 kcal/100g</div>
-                                </div>
-                                <div class="relative z-20 p-4 mt-10">
-                                    <h3 class="font-bold text-lg text-white">Salmon</h3>
-                                    <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                        <img src="/assets/images/garpu.svg" alt="">
-                                        <span>
-                                            DHA 1200mg, Protein 25g, Omega-3
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end">
-                                <div class="absolute inset-0 z-0">
-                                    <img src="assets/images/makanan3.png" alt="Kacang Almond" class="w-full h-full object-cover">
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                                <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Kacang</div>
-                                    <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">164 kcal/28g</div>
-                                </div>
-                                <div class="relative z-20 p-4 mt-10">
-                                    <h3 class="font-bold text-lg text-white">Kacang Almond</h3>
-                                    <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                        <img src="/assets/images/garpu.svg" alt="">
-                                        <span>
-                                            Kalsium 75mg, Vitamin E 7mg
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section
+          id="section-gizi"
+          class="mt-6 bg-white md:p-6 rounded-2xl shadow-sm hidden"
+        >
+          <section
+            class="border rounded-2xl bg-white p-6 shadow-sm flex flex-col"
+          >
+            <!-- === TAHAP 1: CATAT GIZI HARIAN (AWAL) === -->
+            <div id="gizi-step-1">
+              <h2 class="font-bold text-lg flex items-center gap-2 mb-4">
+                <span class="rounded-lg"
+                  ><img src="assets/images/note.svg" alt="" class="w-10 h-10"
+                /></span>
+                Catat Gizi Harian
+              </h2>
+              <div
+                class="bg-[#FFEDE5] border-2 border-dashed rounded-xl p-4 text-center mb-4 cursor-pointer"
+                id="upload-trigger"
+              >
+                <button
+                  class="text-[#F0531C] font-semibold px-4 py-2 rounded-lg mb-4 flex items-center gap-2 mx-auto"
+                >
+                  <span
+                    class="bg-[#F0531C]/30 border border-[#F0531C] p-2 rounded-lg"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.5 9.375C10.8062 9.375 9.375 10.8062 9.375 12.5C9.375 14.1937 10.8062 15.625 12.5 15.625C14.1937 15.625 15.625 14.1937 15.625 12.5C15.625 10.8062 14.1937 9.375 12.5 9.375Z"
+                        fill="#F0531C"
+                      />
+                      <path
+                        d="M20.8333 5.20825H18.1395L15.3197 2.38846C15.1244 2.1931 14.8595 2.08331 14.5833 2.08325H10.4166C10.1403 2.08331 9.87543 2.1931 9.68013 2.38846L6.86033 5.20825H4.16659C3.01763 5.20825 2.08325 6.14263 2.08325 7.29158V18.7499C2.08325 19.8989 3.01763 20.8333 4.16659 20.8333H20.8333C21.9822 20.8333 22.9166 19.8989 22.9166 18.7499V7.29158C22.9166 6.14263 21.9822 5.20825 20.8333 5.20825ZM12.4999 17.7083C9.677 17.7083 7.29158 15.3228 7.29158 12.4999C7.29158 9.677 9.677 7.29158 12.4999 7.29158C15.3228 7.29158 17.7083 9.677 17.7083 12.4999C17.7083 15.3228 15.3228 17.7083 12.4999 17.7083Z"
+                        fill="#F0531C"
+                      />
+                    </svg>
+                  </span>
+                  Upload Foto Makananmu
+                </button>
+                <hr class="border-gray-300 my-4" />
+                <div
+                  class="bg-white p-10 py-20 rounded-md border border-[#F0531C]/30 flex flex-col items-center justify-center"
+                >
+                  <img
+                    src="assets/images/image-oren.svg"
+                    alt=""
+                    class="w-12 h-12 mb-2"
+                  />
+                  <p class="text-xs text-[#F0531C]">
+                    Unggah foto dengan klik atau seret
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                    <!-- Slider Makanan Pilihan Trimester 2 (Mobile Only) -->
-                    <div class="block md:hidden mt-10">
-                        <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
-                            <img src="assets/images/makanan.svg" class="w-5 h-5"> Makanan Pilihan Trimester 2
-                        </h2>
-                        <div id="slider-makanan" class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-2">
-                            <!-- Card 1 -->
-                            <div class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0">
-                            <div class="absolute inset-0 z-0">
-                                <img src="assets/images/makanan1.png" alt="Quinoa" class="w-full h-full object-cover">
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                            <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Biji-bijian</div>
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">222 kcal/cup</div>
-                            </div>
-                            <div class="relative z-20 p-4 mt-10">
-                                <h3 class="font-bold text-lg text-white">Quinoa</h3>
-                                <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                <img src="/assets/images/garpu.svg" alt="">
-                                <span>Protein lengkap 8g <br> Folat 78mcg</span>
-                                </div>
-                            </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0">
-                            <div class="absolute inset-0 z-0">
-                                <img src="assets/images/makanan2.png" alt="Salmon" class="w-full h-full object-cover">
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                            <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Ikan</div>
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">206 kcal/100g</div>
-                            </div>
-                            <div class="relative z-20 p-4 mt-10">
-                                <h3 class="font-bold text-lg text-white">Salmon</h3>
-                                <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                <img src="/assets/images/garpu.svg" alt="">
-                                <span>DHA 1200mg, Protein 25g, Omega-3</span>
-                                </div>
-                            </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0">
-                            <div class="absolute inset-0 z-0">
-                                <img src="assets/images/makanan3.png" alt="Kacang Almond" class="w-full h-full object-cover">
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"></div>
-                            <div class="absolute top-0 left-0 w-full flex justify-between p-4 z-20">
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">Kacang</div>
-                                <div class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white">164 kcal/28g</div>
-                            </div>
-                            <div class="relative z-20 p-4 mt-10">
-                                <h3 class="font-bold text-lg text-white">Kacang Almond</h3>
-                                <div class="flex gap-2 items-start text-xs mt-2 text-white">
-                                <img src="/assets/images/garpu.svg" alt="">
-                                <span>Kalsium 75mg, Vitamin E 7mg</span>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+            <!-- === TAHAP 2: SETELAH UPLOAD (DUMMY GAMBAR) === -->
+            <div
+              id="gizi-step-2"
+              class="hidden flex flex-col items-center justify-center"
+            >
+              <img
+                src="assets/images/steak.jpg"
+                alt="Makanan"
+                class="rounded-xl w-64 h-64 object-cover mb-4"
+              />
+              <button
+                id="btn-analisis"
+                class="bg-[#F0531C] hover:bg-[#d64617] text-white font-semibold px-6 py-3 rounded-lg shadow-md"
+              >
+                Mulai Analisis
+              </button>
+            </div>
+
+            <div
+              class="flex justify-start gap-10 mt-4 text-sm font-bold text-gray-500"
+            >
+              <span class="flex items-center gap-1"
+                ><span
+                  class="w-5 h-5 rounded-md bg-[#FEE2E2] inline-block"
+                ></span>
+                Rendah</span
+              >
+              <span class="flex items-center gap-1"
+                ><span
+                  class="w-5 h-5 rounded-md bg-[#F0FDFA] inline-block"
+                ></span>
+                Ideal</span
+              >
+              <span class="flex items-center gap-1"
+                ><span
+                  class="w-5 h-5 rounded-md bg-[#F97316] inline-block"
+                ></span>
+                Mencapai/mendekati batas</span
+              >
+            </div>
+            <!-- Hasil Analisis -->
+            <div id="gizi-step-3" class="hidden">
+              <div class="flex-1">
+                <h3 class="font-bold text-lg mb-4">Hasil Analisis</h3>
+                <div class="space-y-5">
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1"
+                        ><img
+                          src="assets/images/kalori-api.svg"
+                          class="w-4 h-4"
+                        />
+                        Kalori</span
+                      >
+                      <span>150kcal (8% dari kebutuhan harian)</span>
                     </div>
-                </section>
-            </section>
-        </main>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[25%] bg-[#FFA74F] h-2 rounded-full"></div>
+                      <div class="w-[75%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1 text-[#09332C]"
+                        ><img src="assets/images/protein.svg" class="w-4 h-4" />
+                        Protein</span
+                      >
+                      <span>18g (36% dari kebutuhan harian)</span>
+                    </div>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[35%] bg-[#09332C] h-2 rounded-full"></div>
+                      <div class="w-[65%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1"
+                        ><img src="assets/images/salt.svg" class="w-4 h-4" />
+                        Natrium</span
+                      >
+                      <span>600mg (25% dari kebutuhan harian)</span>
+                    </div>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[30%] bg-[#09332C] h-2 rounded-full"></div>
+                      <div class="w-[70%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1"
+                        ><img
+                          src="assets/images/asamfolat.png"
+                          class="w-4 h-4"
+                        />
+                        Asam Folat</span
+                      >
+                      <span>350mcg (58% dari kebutuhan harian)</span>
+                    </div>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[65%] bg-[#09332C] h-2 rounded-full"></div>
+                      <div class="w-[35%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1"
+                        ><img src="assets/images/zatbesi.svg" class="w-4 h-4" />
+                        Zat Besi</span
+                      >
+                      <span>18mg (67% dari kebutuhan harian)</span>
+                    </div>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[15%] bg-[#FFA74F] h-2 rounded-full"></div>
+                      <div class="w-[85%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex gap-1 text-sm md:text-md font-semibold mb-1"
+                    >
+                      <span class="flex items-center gap-1"
+                        ><img src="assets/images/kalsium.svg" class="w-4 h-4" />
+                        Kalsium</span
+                      >
+                      <span>800mg (96% dari kebutuhan harian)</span>
+                    </div>
+                    <div class="w-full flex flex-row gap-1">
+                      <div class="w-[80%] bg-[#F0531C] h-2 rounded-full"></div>
+                      <div class="w-[20%] bg-gray-200 h-2 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white rounded-xl text-[#09332C] p-4 mt-8">
+                <h3 class="font-bold text-lg mb-4">Ringkasan</h3>
+                <div class="mb-2">
+                  <span class="font-semibold text-[#09332C]">Nama:</span> Sup
+                  ayam kampung
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold text-[#09332C]"
+                    >Kandungan Gizi:</span
+                  >
+                  Baik
+                </div>
+                <div
+                  class="flex md:flex-row flex-col justify-between items-center"
+                >
+                  <div class="mb-2 w-full md:w-[70%]">
+                    <span class="font-semibold text-[#09332C]">Manfaat:</span>
+                    <span class="text-gray-700"
+                      >Sangat baik untuk daya tahan tubuh, cocok untuk diet
+                      sehat dan pemulihan tubuh.</span
+                    >
+                  </div>
+                  <div class="flex gap-4 mt-4">
+                    <div>
+                      <span
+                        class="font-semibold flex items-center gap-1 text-[#09332C]"
+                        ><img
+                          src="assets/images/tips.svg"
+                          alt=""
+                          class="w-4 h-4"
+                        />
+                        Tips</span
+                      >
+                      <p class="text-gray-600 mt-1">
+                        Kandungan serat rendah disarankan untuk menambah sayuran
+                        seperti brokoli atau wortel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <section>
+                <!-- Rekap Analisis Mingguan -->
+                <div class="mt-10">
+                  <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <img src="assets/images/chart.svg" class="w-5 h-5" /> Rekap
+                    Analisis Mingguan
+                  </h2>
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+                  >
+                    <div class="bg-white border rounded-xl p-4">
+                      <div class="flex flex-row items-center gap-2 mb-2">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#09332C] text-[#0D9488]"
+                        >
+                          <img
+                            src="assets/images/asamfolat.svg"
+                            class="w-5 h-5"
+                          />
+                        </div>
+                        <div class="flex flex-col">
+                          <h3 class="font-bold">Asam Folat</h3>
+                          <div class="text-xs text-gray-500 mb-1">
+                            Minggu ke-17
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-sm text-gray-500 mb-3">
+                        Mencegah cacat <br />
+                        tabung saraf pada janin
+                      </p>
+                      <div
+                        class="flex flex-row font-semibold text-sm justify-between"
+                      >
+                        <p class="text-gray-400">Progress</p>
+                        <p class="text-[#09332C]">2.450/4.200 mcg</p>
+                      </div>
+                      <div class="w-full flex flex-row gap-1">
+                        <div
+                          class="w-[50%] bg-[#09332C] h-3 rounded-full"
+                        ></div>
+                        <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
+                      </div>
+                      <p class="text-xs text-gray-500 mt-3 text-left">
+                        (58% dari target mingguan)
+                      </p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-4">
+                      <div class="flex flex-row items-center gap-2 mb-2">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#F0531C]"
+                        >
+                          <img
+                            src="assets/images/zatbesi.svg"
+                            class="w-5 h-5"
+                          />
+                        </div>
+                        <div class="flex flex-col">
+                          <h3 class="font-bold">Zat Besi</h3>
+                          <div class="text-xs text-gray-500 mb-1">
+                            Minggu ke-17
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-sm text-[#F0531C] mb-3">
+                        Mencegah cacat <br />
+                        tabung saraf pada janin
+                      </p>
+                      <div
+                        class="flex flex-row font-semibold text-sm justify-between"
+                      >
+                        <p class="text-gray-400">Progress</p>
+                        <p class="text-[#09332C]">2.450/4.200 mcg</p>
+                      </div>
+                      <div class="w-full flex flex-row gap-1">
+                        <div
+                          class="w-[50%] bg-[#F0531C] h-3 rounded-full"
+                        ></div>
+                        <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
+                      </div>
+                      <p class="text-xs text-gray-500 mt-3 text-left">
+                        (58% dari target mingguan)
+                      </p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-4">
+                      <div class="flex flex-row items-center gap-2 mb-2">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#FFA74F] text-white"
+                        >
+                          <img
+                            src="assets/images/kalsium.svg"
+                            class="w-5 h-5"
+                          />
+                        </div>
+                        <div class="flex flex-col">
+                          <h3 class="font-bold">Kalsium</h3>
+                          <div class="text-xs text-gray-500 mb-1">
+                            Minggu ke-17
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-sm mb-3 text-[#FFA74F]">
+                        Mencegah cacat <br />
+                        tabung saraf pada janin
+                      </p>
+                      <div
+                        class="flex flex-row font-semibold text-sm justify-between"
+                      >
+                        <p class="text-gray-400">Progress</p>
+                        <p class="text-[#09332C]">2.450/4.200 mcg</p>
+                      </div>
+                      <div class="w-full flex flex-row gap-1">
+                        <div
+                          class="w-[50%] bg-[#FFA74F] h-3 rounded-full"
+                        ></div>
+                        <div class="w-[50%] bg-gray-200 h-3 rounded-full"></div>
+                      </div>
+                      <p class="text-xs text-gray-500 mt-3 text-left">
+                        (58% dari target mingguan)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Makanan Pilihan Trimester 2 -->
+                <div class="md:block hidden mt-10">
+                  <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <img src="assets/images/makanan.svg" class="w-5 h-5" />
+                    Makanan Pilihan Trimester 2
+                  </h2>
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                  >
+                    <!-- Card 1 -->
+                    <div
+                      class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan1.png"
+                          alt="Quinoa"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <!-- Overlay hitam gradient to top, lebih cerah di atas -->
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <!-- Kategori & kcal di atas -->
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Biji-bijian
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          222 kcal/cup
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">Quinoa</h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span>
+                            Protein lengkap 8g <br />
+                            Folat 78mcg
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                      class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan2.png"
+                          alt="Salmon"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Ikan
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          206 kcal/100g
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">Salmon</h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span> DHA 1200mg, Protein 25g, Omega-3 </span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                      class="bg-white rounded-xl overflow-hidden shadow-sm relative h-56 flex flex-col justify-end"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan3.png"
+                          alt="Kacang Almond"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Kacang
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          164 kcal/28g
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">
+                          Kacang Almond
+                        </h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span> Kalsium 75mg, Vitamin E 7mg </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slider Makanan Pilihan Trimester 2 (Mobile Only) -->
+                <div class="block md:hidden mt-10">
+                  <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <img src="assets/images/makanan.svg" class="w-5 h-5" />
+                    Makanan Pilihan Trimester 2
+                  </h2>
+                  <div
+                    id="slider-makanan"
+                    class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-2"
+                  >
+                    <!-- Card 1 -->
+                    <div
+                      class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan1.png"
+                          alt="Quinoa"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Biji-bijian
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          222 kcal/cup
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">Quinoa</h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span
+                            >Protein lengkap 8g <br />
+                            Folat 78mcg</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                      class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan2.png"
+                          alt="Salmon"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Ikan
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          206 kcal/100g
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">Salmon</h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span>DHA 1200mg, Protein 25g, Omega-3</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                      class="min-w-[260px] h-56 snap-center bg-white rounded-xl overflow-hidden shadow-sm relative flex flex-col justify-end flex-shrink-0"
+                    >
+                      <div class="absolute inset-0 z-0">
+                        <img
+                          src="assets/images/makanan3.png"
+                          alt="Kacang Almond"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent z-10"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 w-full flex justify-between p-4 z-20"
+                      >
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          Kacang
+                        </div>
+                        <div
+                          class="backdrop-blur bg-white/20 border border-white text-xs font-bold px-3 py-1.5 rounded-full text-white"
+                        >
+                          164 kcal/28g
+                        </div>
+                      </div>
+                      <div class="relative z-20 p-4 mt-10">
+                        <h3 class="font-bold text-lg text-white">
+                          Kacang Almond
+                        </h3>
+                        <div
+                          class="flex gap-2 items-start text-xs mt-2 text-white"
+                        >
+                          <img src="/assets/images/garpu.svg" alt="" />
+                          <span>Kalsium 75mg, Vitamin E 7mg</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </section>
+      </main>
     </div>
 
-                <!-- Footer -->
-        <footer class="text-white"> 
-            <div class="bg-[#1A3A31] px-6 py-8 md:px-12">
-                        <div class="flex items-center justify-between flex-row mb-3">
-                            <h2 class="text-xl md:text-3xl font-bold">Newsletter kami</h2>
-                            <div class="flex-shrink-0">
-                                <a href="#" class="inline-block border-2 border-[#F8A531] text-[#F8A531] font-semibold rounded-full px-8 py-3 transition-colors duration-300 hover:bg-[#F8A531] hover:text-[#1A3A31]">
-                                    Gabung Mitra
-                                </a>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mt-1 text-left">Dari Sehat Raih Sejahtera. Yuk, dapatkan tips sehat bersama Sehatera!</p>
+    <!-- Footer -->
+    <footer class="text-white">
+      <div class="bg-[#1A3A31] px-6 py-8 md:px-12">
+        <div class="flex items-center justify-between flex-row mb-3">
+          <h2 class="text-xl md:text-3xl font-bold">Newsletter kami</h2>
+          <div class="flex-shrink-0">
+            <a
+              href="#"
+              class="inline-block border-2 border-[#F8A531] text-[#F8A531] font-semibold rounded-full px-8 py-3 transition-colors duration-300 hover:bg-[#F8A531] hover:text-[#1A3A31]"
+            >
+              Gabung Mitra
+            </a>
+          </div>
+        </div>
+        <p class="text-gray-300 mt-1 text-left">
+          Dari Sehat Raih Sejahtera. Yuk, dapatkan tips sehat bersama Sehatera!
+        </p>
+      </div>
+
+      <div class="footer-bg px-6 py-16 md:px-12">
+        <div class="container mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+              <a href="#" class="flex items-center gap-3 mb-4">
+                <img
+                  src="/assets/images/sehatera-footer.svg"
+                  class="h-10 md:h-20"
+                  alt=""
+                />
+              </a>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Sehatera hadir untuk mendukung pola makan sehat masyarakat
+                Indonesia dengan solusi gizi cerdas.
+              </p>
+              <div class="flex items-center gap-5 mt-6">
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8.56,5.19 6.88,5.19C5.19,5.19 5.19,6 5.19,6.88A1.68,1.68 0 0,0 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
 
-            <div class="footer-bg px-6 py-16 md:px-12">
-                <div class="container mx-auto">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
-                        <div>
-                            <a href="#" class="flex items-center gap-3 mb-4">
-                                <img src="/assets/images/sehatera-footer.svg" class="h-10 md:h-20" alt="">
-                            </a>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Sehatera hadir untuk mendukung pola makan sehat masyarakat Indonesia dengan solusi gizi cerdas.
-                            </p>
-                            <div class="flex items-center gap-5 mt-6">
-                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
-                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
-                                <a href="#" class="text-gray-300 hover:text-white transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8.56,5.19 6.88,5.19C5.19,5.19 5.19,6 5.19,6.88A1.68,1.68 0 0,0 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" /></svg></a>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold mb-4">Sehatera</h3>
-                            <ul class="space-y-3">
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Makanan</a></li>
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Rekomendasi Gizi</a></li>
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Analisis Ibu Hamil</a></li>
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Reward Bergizi</a></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
-                            <ul class="space-y-3">
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
-                                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Kontak Kami</a></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold mb-4">Kontak Kami</h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-center gap-3">
-                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
-                                    <span class="text-gray-300">sehatera@gmail.com</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
-                                    <span class="text-gray-300">+62 877 2513 2481</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <hr class="border-white my-10">
-                    <div class="text-center text-sm">
-                        &copy; 2025 Sehatera. All rights reserved.
-                    </div>
-                </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Sehatera</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Analisis Makanan</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Rekomendasi Gizi</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Analisis Ibu Hamil</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Reward Bergizi</a
+                  >
+                </li>
+              </ul>
             </div>
-        </footer>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Beranda</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-300 hover:text-white transition-colors"
+                    >Kontak Kami</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Kontak Kami</h3>
+              <ul class="space-y-4">
+                <li class="flex items-center gap-3">
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+                    />
+                  </svg>
+                  <span class="text-gray-300">sehatera@gmail.com</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"
+                    />
+                  </svg>
+                  <span class="text-gray-300">+62 877 2513 2481</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <hr class="border-white my-10" />
+          <div class="text-center text-sm">
+            &copy; 2025 Sehatera. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      id="loading-spinner"
+      class="fixed inset-0 bg-white backdrop-blur-md z-50 flex flex-col items-center justify-center text-center p-6 hidden"
+    >
+      <div class="relative w-48 h-48 md:w-64 md:h-64">
+        <div
+          class="absolute inset-0 border-4 border-teal-200 border-t-teal-500 p-4 rounded-full animate-spin"
+        ></div>
+        <video
+          src="assets/images/loading-sehatera.mp4"
+          autoplay
+          loop
+          muted
+          class="w-full h-full object-cover rounded-full"
+        ></video>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800 mt-8">
+        Merangkum Jurnal Kehamilan
+      </h2>
+      <p class="text-gray-600 mt-2">Merangkum Mohon tunggu sebentar!</p>
+    </div>
+
     <script>
-        // Dropdown trimester dan minggu
-        const mingguGrid = document.getElementById('mingguGrid');
-        const trimesterSelect = document.getElementById('trimesterSelect');
-        function renderMinggu(trimester) {
-            mingguGrid.innerHTML = '';
-            // Hitung minggu per trimester
-            let start = 1 + (trimester-1)*14;
-            let end = trimester*14;
-            let mingguArr = [];
-            for(let i=start; i<=end; i++) {
-                mingguArr.push(i);
-            }
-            // 4 kolom × 7 row
-            for(let r=0; r<7; r++) {
-                for(let c=0; c<4; c++) {
-                    let idx = r*4 + c;
-                    if(idx < mingguArr.length) {
-                        const btn = document.createElement('button');
-                        btn.className = 'w-14 h-14 flex items-center selft-center align-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-100 font-semibold transition';
-                        if(idx === 0) btn.classList.add('bg-[#09332C]', 'text-[#09332C]', 'border-[#09332C]');
-                        btn.textContent = mingguArr[idx];
-                        mingguGrid.appendChild(btn);
-                    } else {
-                        // Kosongkan cell jika minggu habis
-                        const empty = document.createElement('div');
-                        empty.className = '';
-                        mingguGrid.appendChild(empty);
-                    }
-                }
-            }
-        }
-        trimesterSelect.addEventListener('change', function() {
-            renderMinggu(Number(this.value));
-        });
-        renderMinggu(1); // Default trimester 1
+      const uploadTrigger = document.getElementById("upload-trigger");
+      const step1 = document.getElementById("gizi-step-1");
+      const step2 = document.getElementById("gizi-step-2");
+      const step3 = document.getElementById("gizi-step-3");
+      const btnAnalisis = document.getElementById("btn-analisis");
+
+      uploadTrigger.addEventListener("click", () => {
+        step1.classList.add("hidden");
+        step2.classList.remove("hidden");
+      });
+
+      btnAnalisis.addEventListener("click", () => {
+        step2.classList.add("hidden");
+        loadingSpinner.classList.remove("hidden");
+
+        setTimeout(() => {
+          loadingSpinner.classList.add("hidden");
+          step2.classList.remove("hidden");
+          step3.classList.remove("hidden");
+          btnAnalisis.classList.add("hidden");
+          step3.innerHTML = document.querySelector(
+            ".your-original-analysis-html"
+          ).innerHTML;
+        }, 2500);
+      });
     </script>
     <script>
-// Switch tombol aktif dan UI
-const btnJurnal = document.getElementById('btn-jurnal');
-const btnGizi = document.getElementById('btn-gizi');
-const sectionJurnal = document.getElementById('section-jurnal');
-const sectionGizi = document.getElementById('section-gizi');
+      const moodButtons = document.querySelectorAll(
+        "#section-jurnal .mt-4 button"
+      );
+      const symptomButtons = document.querySelectorAll(
+        "#section-jurnal .flex-wrap button"
+      );
+      let activeMood = null;
+      let activeSymptoms = [];
 
-btnJurnal.addEventListener('click', function() {
-    btnJurnal.classList.add('bg-[#09332C]', 'text-white');
-    btnJurnal.classList.remove('text-[#09332C]', 'bg-transparent', 'hover:bg-[#09332C]/10');
-    btnGizi.classList.remove('bg-[#09332C]', 'text-white');
-    btnGizi.classList.add('text-[#09332C]', 'bg-transparent', 'hover:bg-[#09332C]/10');
-    sectionJurnal.classList.remove('hidden');
-    sectionGizi.classList.add('hidden');
-});
-btnGizi.addEventListener('click', function() {
-    btnGizi.classList.add('bg-[#09332C]', 'text-white');
-    btnGizi.classList.remove('text-[#09332C]', 'bg-transparent', 'hover:bg-[#09332C]/10');
-    btnJurnal.classList.remove('bg-[#09332C]', 'text-white');
-    btnJurnal.classList.add('text-[#09332C]', 'bg-transparent', 'hover:bg-[#09332C]/10');
-    sectionJurnal.classList.add('hidden');
-    sectionGizi.classList.remove('hidden');
-});
-</script>
+      moodButtons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          moodButtons.forEach((b) => {
+            b.classList.remove(
+              "bg-[#09332C]",
+              "text-white",
+              "border-[#09332C]"
+            );
+            b.classList.add("border-gray-800", "text-gray-700");
+            const img = b.querySelector("img");
+            if (img) img.src = img.dataset.default || img.src;
+          });
+          this.classList.add("bg-[#09332C]", "text-white", "border-[#09332C]");
+          this.classList.remove("border-gray-800", "text-gray-700");
+          const img = this.querySelector("img");
+          if (img && img.dataset.active) img.src = img.dataset.active;
+          activeMood = this.innerText.trim();
+        });
+      });
 
-<script>
-    // Sidebar mobile toggle
-    const btnSidebar = document.getElementById('btn-sidebar');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
+      symptomButtons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const isActive = this.classList.contains("bg-[#09332C]");
+          if (isActive) {
+            this.classList.remove("bg-[#09332C]", "text-white");
+            this.classList.add(
+              "bg-white",
+              "text-[#09332C]",
+              "border",
+              "border-[#09332C]"
+            );
+            activeSymptoms = activeSymptoms.filter(
+              (s) => s !== this.innerText.trim()
+            );
+          } else {
+            this.classList.remove(
+              "bg-white",
+              "text-[#09332C]",
+              "border",
+              "border-[#09332C]"
+            );
+            this.classList.add("bg-[#09332C]", "text-white");
+            activeSymptoms.push(this.innerText.trim());
+          }
+        });
+      });
 
-    function openSidebar() {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    }
-    function closeSidebar() {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-    btnSidebar && btnSidebar.addEventListener('click', openSidebar);
-    sidebarOverlay && sidebarOverlay.addEventListener('click', closeSidebar);
+      const mingguButtonsContainer = document.getElementById("mingguGrid");
+      const sectionJurnal = document.getElementById("section-jurnal");
+      const loadingSpinner = document.getElementById("loading-spinner");
 
-    // Close sidebar on desktop resize
-    window.addEventListener('resize', () => {
-        if(window.innerWidth >= 1024) {
-            sidebar.classList.remove('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
-        } else {
-            sidebar.classList.add('-translate-x-full');
+      mingguButtonsContainer.addEventListener("click", function (e) {
+        if (e.target.tagName === "BUTTON") {
+          mingguButtonsContainer.querySelectorAll("button").forEach((btn) => {
+            btn.classList.remove(
+              "bg-[#09332C]",
+              "text-white",
+              "border-[#09332C]"
+            );
+            btn.classList.add(
+              "bg-white",
+              "text-gray-700",
+              "border",
+              "border-gray-300"
+            );
+          });
+          e.target.classList.add(
+            "bg-[#09332C]",
+            "text-white",
+            "border-[#09332C]"
+          );
+          e.target.classList.remove(
+            "bg-white",
+            "text-gray-700",
+            "border-gray-300"
+          );
+
+          const week = e.target.innerText;
+          const mood = activeMood || "Belum dipilih";
+          const symptoms =
+            activeSymptoms.length > 0
+              ? activeSymptoms.join(", ")
+              : "Belum dipilih";
+
+          // Sembunyikan section jurnal
+          sectionJurnal.classList.add("hidden");
+
+          // Tampilkan loading overlay
+          loadingSpinner.classList.remove("hidden");
+
+          // Setelah 2.5 detik, tampilkan rangkuman
+          setTimeout(() => {
+            loadingSpinner.classList.add("hidden");
+
+            const summaryPage = document.createElement("div");
+            summaryPage.className =
+              "bg-white rounded-2xl shadow-sm p-6 animate-fadeIn";
+            summaryPage.innerHTML = `
+        <button id="backToJurnal" class="mb-4 flex items-center text-[#09332C] hover:underline">
+          ← Kembali ke Jurnal
+        </button>
+        <h2 class="text-2xl font-bold text-[#09332C] mb-4">Rangkuman Minggu ke-${week}</h2>
+        <div class="space-y-6 text-gray-700 leading-relaxed">
+          <div>
+            <h3 class="font-semibold text-lg text-[#09332C] mb-1 flex items-center gap-2">
+              <img src="assets/images/baby.svg" alt="" class="w-5 h-5"> Perkembangan Janin
+            </h3>
+            <p>Pada minggu ini, janin mulai menunjukkan perkembangan sistem organ penting. Ukurannya kira-kira sebesar buah lemon dan mulai aktif bergerak.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg text-[#09332C] mb-1 flex items-center gap-2">
+              <img src="assets/images/hamilhijau.svg" alt="" class="w-5 h-5"> Perubahan Tubuh Ibu
+            </h3>
+            <p>Ibu mungkin mengalami perubahan hormon yang memengaruhi suasana hati dan nafsu makan. Perut mulai sedikit membesar dan payudara terasa lebih sensitif.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg text-[#09332C] mb-1 flex items-center gap-2">
+              <img src="assets/images/note.svg" alt="" class="w-5 h-5"> Catatan Ahli
+            </h3>
+            <div class="bg-[#EEF1EB] rounded-xl p-4">
+              <p class="text-sm font-semibold text-[#09332C]">Rekomendasi Mingguan:</p>
+              <p class="text-sm text-gray-600 mt-1">Pastikan ibu cukup istirahat, perbanyak minum air putih, dan konsumsi makanan tinggi zat besi.</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg text-[#09332C] mb-1 flex items-center gap-2">
+              <img src="assets/images/love.svg" alt="" class="w-5 h-5"> Perasaan Ibu
+            </h3>
+            <p class="text-sm">${mood}</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg text-[#09332C] mb-1 flex items-center gap-2">
+              <img src="assets/images/kalori.svg" alt="" class="w-5 h-5"> Gejala yang Dirasakan
+            </h3>
+            <p class="text-sm">${symptoms}</p>
+          </div>
+        </div>
+      `;
+
+            sectionJurnal.parentElement.appendChild(summaryPage);
+
+            document
+              .getElementById("backToJurnal")
+              .addEventListener("click", function () {
+                summaryPage.remove();
+                sectionJurnal.classList.remove("hidden");
+                sectionJurnal.scrollIntoView({ behavior: "smooth" });
+              });
+          }, 2500);
         }
-    });
-</script>
-</body>
+      });
+    </script>
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.4s ease-in-out;
+      }
+    </style>
+
+    <script>
+      const mingguGrid = document.getElementById("mingguGrid");
+      const trimesterSelect = document.getElementById("trimesterSelect");
+      function renderMinggu(trimester) {
+        mingguGrid.innerHTML = "";
+        let start = 1 + (trimester - 1) * 14;
+        let end = trimester * 14;
+        let mingguArr = [];
+        for (let i = start; i <= end; i++) mingguArr.push(i);
+        for (let r = 0; r < 7; r++) {
+          for (let c = 0; c < 4; c++) {
+            let idx = r * 4 + c;
+            if (idx < mingguArr.length) {
+              const btn = document.createElement("button");
+              btn.className =
+                "w-14 h-14 flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-100 font-semibold transition";
+              if (idx === 0)
+                btn.classList.add(
+                  "bg-[#09332C]",
+                  "text-white",
+                  "border-[#09332C]"
+                );
+              btn.textContent = mingguArr[idx];
+              mingguGrid.appendChild(btn);
+            } else {
+              const empty = document.createElement("div");
+              mingguGrid.appendChild(empty);
+            }
+          }
+        }
+      }
+      trimesterSelect.addEventListener("change", function () {
+        renderMinggu(Number(this.value));
+      });
+      renderMinggu(1);
+    </script>
+
+    <script>
+      const btnJurnal = document.getElementById("btn-jurnal");
+      const btnGizi = document.getElementById("btn-gizi");
+      const sectionGizi = document.getElementById("section-gizi");
+      btnJurnal.addEventListener("click", function () {
+        btnJurnal.classList.add("bg-[#09332C]", "text-white");
+        btnJurnal.classList.remove(
+          "text-[#09332C]",
+          "bg-transparent",
+          "hover:bg-[#09332C]/10"
+        );
+        btnGizi.classList.remove("bg-[#09332C]", "text-white");
+        btnGizi.classList.add(
+          "text-[#09332C]",
+          "bg-transparent",
+          "hover:bg-[#09332C]/10"
+        );
+        sectionJurnal.classList.remove("hidden");
+        sectionGizi.classList.add("hidden");
+      });
+      btnGizi.addEventListener("click", function () {
+        btnGizi.classList.add("bg-[#09332C]", "text-white");
+        btnGizi.classList.remove(
+          "text-[#09332C]",
+          "bg-transparent",
+          "hover:bg-[#09332C]/10"
+        );
+        btnJurnal.classList.remove("bg-[#09332C]", "text-white");
+        btnJurnal.classList.add(
+          "text-[#09332C]",
+          "bg-transparent",
+          "hover:bg-[#09332C]/10"
+        );
+        sectionJurnal.classList.add("hidden");
+        sectionGizi.classList.remove("hidden");
+      });
+    </script>
+
+    <script>
+      const btnSidebar = document.getElementById("btn-sidebar");
+      const sidebar = document.getElementById("sidebar");
+      const sidebarOverlay = document.getElementById("sidebar-overlay");
+      function openSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        sidebarOverlay.classList.remove("hidden");
+      }
+      function closeSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("hidden");
+      }
+      btnSidebar && btnSidebar.addEventListener("click", openSidebar);
+      sidebarOverlay && sidebarOverlay.addEventListener("click", closeSidebar);
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) {
+          sidebar.classList.remove("-translate-x-full");
+          sidebarOverlay.classList.add("hidden");
+        } else {
+          sidebar.classList.add("-translate-x-full");
+        }
+      });
+    </script>
+  </body>
 </html>
